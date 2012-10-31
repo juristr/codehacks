@@ -1,92 +1,15 @@
 <html>
 	<head>
-		<style type="text/css">
-			.scroll-menu {
-				top: -46px;
-			}
-
-			.scroll-menu {
-				width: 50px;
-				background: url(images/clear_gray.png);
-				position: fixed;
-				z-index: 9;
-				top: -100px;
-				padding: 6px;
-				margin-left: 848px;
-				-webkit-border-top-left-radius: 8px;
-				-webkit-border-bottom-left-radius: 8px;
-				-moz-border-radius-topleft: 8px;
-				-moz-border-radius-bottomleft: 8px;
-				border-top-left-radius: 8px;
-				border-bottom-left-radius: 8px;
-				right: 0;
-			}
-
-			.scroll-menu a {
-				color: white;
-				text-shadow: #27292C 0 -1px 1px;
-				font-family: "HelveticaNeue-Bold","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
-				font-weight: 700;
-				padding: 6px 8px;
-				display: block;
-				text-decoration:none;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="jquery.scrolltop.css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="jquery.scrolltop.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$(".js-scroll").click(function() {
-		          $("html, body").animate({ scrollTop: 0 }, "slow");
-		          return false;
-		        });
+				$.fn.scrollTop();
 			});
-
-	        var scrollMenuLocked = true;
-	        function onPageSroll(e) {
-	                var target = document.body;
-	                var scrollTop = 0, scrollLeft = 0;
-	                while (target != null)  {
-	                        scrollTop += target.scrollTop ? target.scrollTop : 0;
-	                        scrollLeft += target.scrollLeft ? target.scrollLeft : 0;
-	                        target = target.parentNode;
-	                }
-
-	                var ch = document.body.clientHeight;
-	                var item, attr, top, i;
-	                el = $(".scroll-menu");
-	                if (scrollTop >= 80)   {
-	                        if (scrollMenuLocked) {
-	                                for (i = 0; i < el.length; i++) {
-	                                        item = $(el[i]);
-	                                        attr = item.attr('data-top');
-	                                        top = attr ? attr : '8px';
-	                                        item.animate({top:top});
-	                                }
-	                        }
-	                        scrollMenuLocked = false;
-	                }
-	                else {
-	                        if (!scrollMenuLocked) {
-	                                for (i = 0; i < el.length; i++) {
-	                                        item = $(el[i]);
-	                                        top = item.height() + 20;
-	                                        
-	                                        item.animate({top:(-top).toString() + 'px'})
-	                                }
-	                        }
-	                        scrollMenuLocked = true;
-	                }
-	        }
-
-        	$(window).bind('scroll', onPageSroll);
 		</script>
 	</head>
 	<body>
-		<div class="scroll-menu">
-			<div>
-				<a href="javascript:;" class="js-scroll">Top</a>
-			</div>
-		</div>		
 		<h1>Scroll To Top</h1>
 
 		<p>
