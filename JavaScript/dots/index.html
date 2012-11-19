@@ -1,0 +1,28 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="jquery.dots.js"></script>
+	<script>
+		$(function(){
+			
+
+			$(".js-start").click(function(){
+				$(".loading").dots();	
+			});
+
+			$(".js-stop").click(function(){
+				//dots.stop();
+				$('.loading').find('span').remove();
+			});
+		});
+	</script>
+</head>
+<body>
+<h1>Dots demo</h1>
+
+<a href="javascript:;" class="js-start">Start</a>
+<a href="javascript:;" class="js-stop">Stop</a>
+
+<h2 class="loading">Loading</h2>
+</body>
+</html>
