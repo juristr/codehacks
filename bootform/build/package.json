@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "description": "Bootform",
+  "version": "0.0.1",
+  "author": {
+    "name": "Juri Strumpflohner",
+    "email": "juri.strumpflohner@js-development.com"
+  },
+  "folders": {
+    "src": "../src",
+    "public": "../public"
+  },
+  "dependencies": {
+    "grunt": "~0.3.11",
+    "requirejs": "2.0.6",
+    "grunt-requirejs": "~0.2.9",
+    "coffee-script": "~1.3.3",
+    "grunt-coffee": "0.0.5"
+  }
+}
