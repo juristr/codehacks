@@ -11,7 +11,8 @@
         this.someModel = new Testmodel({
           name: 'Juri'
         });
-        return this.element.html(canView.view(this.options.view, this.someModel));
+        this.element.html(canView.view(this.options.view, this.someModel));
+        return $.getScript('js/libs/fb.js');
       },
       '.js-save click': function(el, ev) {
         return this.someModel.attr('name', el.siblings('input[type=text]').val());

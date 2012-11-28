@@ -4,7 +4,7 @@
     var Testmodel;
     return Testmodel = can.Model({
       init: function() {
-        return console.log('test');
+        return console.log('model initialized');
       }
     });
   });

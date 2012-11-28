@@ -4,12 +4,13 @@ require.config
   # if the CDN location fails, it loads from local path
   # @see: http://requirejs.org/docs/api.html#pathsfallbacks
   paths:
-    jquery: [
-      'http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min'
+    #jquery: [
+    #  'http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min',
+    #  'libs/jquery.min'
+    #],
+    bootstrap:[
+       '../assets/bootstrap/js/bootstrap.min'
     ]
-    #bootstrap:[
-    #   'assets/bootstrap/js/bootstrap.min.js'
-    #]
   #   json: [
   #     'http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2'
   #   ]
@@ -20,7 +21,8 @@ require.config
 
 
 require([
-  'app/builder/builder'
+  'app/builder/builder',
+  'bootstrap'
 ], (Builder) ->
   new Builder $('.js-main-content')
   #can.$('.js-main-content').html '<h1>Test</h1>'

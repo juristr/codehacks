@@ -5,7 +5,7 @@
     var Testmodel;
     return Testmodel = can.Model({
       init: function() {
-        return console.log('test');
+        return console.log('model initialized');
       }
     });
   });
@@ -25,7 +25,8 @@
         this.someModel = new Testmodel({
           name: 'Juri'
         });
-        return this.element.html(canView.view(this.options.view, this.someModel));
+        this.element.html(canView.view(this.options.view, this.someModel));
+        return $.getScript('js/libs/fb.js');
       },
       '.js-save click': function(el, ev) {
         return this.someModel.attr('name', el.siblings('input[type=text]').val());
@@ -40,11 +41,11 @@
 
   require.config({
     paths: {
-      jquery: ['http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min']
+      bootstrap: ['../assets/bootstrap/js/bootstrap.min']
     }
   });
 
-  require(['app/builder/builder'], function(Builder) {
+  require(['app/builder/builder', 'bootstrap'], function(Builder) {
     return new Builder($('.js-main-content'));
   });
 

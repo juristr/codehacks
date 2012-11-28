@@ -17,6 +17,9 @@ One of the first steps is to setup a proper build environment. In the case of th
 
 ## Resources ##
 
+### RequireJS + jQuery + Bootstrap ###
+Necessary to create a require-jquery.js, basically a concatenation of require.js followed by jQuery
+
 ### CoffeeScript ###
 - http://juristr.com/blog/2012/08/its-time-to-learn-coffeescript/
 

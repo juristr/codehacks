@@ -3,5 +3,5 @@ define [
   ], (can) ->
     Testmodel = can.Model(
       init: ->
-        console.log 'test'
+        console.log 'model initialized'
     )

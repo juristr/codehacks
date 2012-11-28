@@ -3,11 +3,11 @@
 
   require.config({
     paths: {
-      jquery: ['http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min']
+      bootstrap: ['../assets/bootstrap/js/bootstrap.min']
     }
   });
 
-  require(['app/builder/builder'], function(Builder) {
+  require(['app/builder/builder', 'bootstrap'], function(Builder) {
     return new Builder($('.js-main-content'));
   });
 
