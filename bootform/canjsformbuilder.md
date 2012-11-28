@@ -1,5 +1,10 @@
 # Building with CanJS #
 
+## CanJS ##
+
+### Loading Views ###
+http://www.youtube.com/watch?feature=player_detailpage&v=GdT4Oq6ZQ68#t=1095s
+
 ## Download CanJS ##
 Download the [CanJS AMD](http://canjs.us/#using_canjs-amd) version. That allows to easily integrate with RequireJS.
 

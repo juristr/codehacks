@@ -1,26 +1,41 @@
 module.exports = function(grunt) {
 
+
   grunt.loadNpmTasks('grunt-requirejs');
-  grunt.loadNpmTasks('grunt-coffee');
+  //grunt.loadNpmTasks('grunt-coffee');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   grunt.initConfig({
 
     pkg: '<json:package.json>',
 
     coffee: { 
+      compile: {
+        files: {
+          //'<%= pkg.folders.public %>/js/**/*.js': [ '<%= pkg.folders.src %>/**/*.coffee']
+          '../public/js/*.js': [
+            '../src/*.coffee',
+            '../src/app/*.coffee',
+            '../src/app/builder/*.coffee',
+            '../src/app/models/*.coffee'
+          ]
+        }
+      }
       /*
       models: {
         src: ['<%= pkg.folders.src %>/models/*.coffee'],
         dest: '<%= pkg.folders.public %>/js/models/'
       },
-      controllers: {
-        src: ['<%= pkg.folders.src %>/controllers/*.coffee'],
-        dest: '<%= pkg.folders.public %>/js/controllers/'
-      },*/
+      
       app: {
+        src: ['<%= pkg.folders.src %>/app/.coffee'],
+        dest: '<%= pkg.folders.public %>/js/app'
+      },
+      appinit: {
         src: '<%= pkg.folders.src %>/app.coffee',
         dest: '<%= pkg.folders.public %>/js/'
       },
+      */
     },
     requirejs: {
       baseUrl: "../public/js/",
