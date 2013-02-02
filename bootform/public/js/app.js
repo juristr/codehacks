@@ -7,7 +7,7 @@
     }
   });
 
-  require(['app/builder/builder', 'bootstrap'], function(Builder) {
+  require(['app/builder/builder', 'bootstrap'], function(Builder, bootstrap) {
     return new Builder($('.js-main-content'));
   });
 

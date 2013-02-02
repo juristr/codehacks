@@ -45,7 +45,8 @@ module.exports = function(grunt) {
       paths: {
         jquery: "empty:",
         can: "empty:",
-        json: "empty:"
+        json: "empty:",
+        boostrap: "empty"
       }
     },
     server: {
