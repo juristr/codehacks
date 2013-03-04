@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsoleApp", "ClientConsoleApp\ClientConsoleApp.csproj", "{8106BCF3-F78A-4237-8507-6AA93A56D3AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfClientApplication", "WpfClientApplication\WpfClientApplication.csproj", "{3056AD0D-BB5D-4D23-9A3E-AA05F0BF0E7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsClientApplication", "WinFormsClientApplication\WinFormsClientApplication.csproj", "{B0C2D14B-AE2F-4719-8DE6-C6198C4FB47A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8106BCF3-F78A-4237-8507-6AA93A56D3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8106BCF3-F78A-4237-8507-6AA93A56D3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8106BCF3-F78A-4237-8507-6AA93A56D3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8106BCF3-F78A-4237-8507-6AA93A56D3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3056AD0D-BB5D-4D23-9A3E-AA05F0BF0E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3056AD0D-BB5D-4D23-9A3E-AA05F0BF0E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3056AD0D-BB5D-4D23-9A3E-AA05F0BF0E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3056AD0D-BB5D-4D23-9A3E-AA05F0BF0E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C2D14B-AE2F-4719-8DE6-C6198C4FB47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C2D14B-AE2F-4719-8DE6-C6198C4FB47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C2D14B-AE2F-4719-8DE6-C6198C4FB47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C2D14B-AE2F-4719-8DE6-C6198C4FB47A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
