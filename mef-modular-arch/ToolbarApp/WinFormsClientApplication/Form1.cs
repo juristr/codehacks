@@ -25,9 +25,16 @@ namespace WinFormsClientApplication
 
         public void OnImportsSatisfied()
         {
-            foreach (var exportMenuItem in ExportMenuItems)
+            if (ExportMenuItems.Count() > 0)
             {
-                exportToolStripMenuItem.DropDownItems.Add(exportMenuItem);
+                foreach (var exportMenuItem in ExportMenuItems)
+                {
+                    exportToolStripMenuItem.DropDownItems.Add(exportMenuItem);
+                }
+            }
+            else
+            {
+                exportToolStripMenuItem.Enabled = false;
             }
         }
     }

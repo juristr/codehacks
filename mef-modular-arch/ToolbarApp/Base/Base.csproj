@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="IModule.cs" />
+    <Compile Include="MefDebugger.cs" />
     <Compile Include="Menu\IMenu.cs" />
     <Compile Include="Menu\IMenuItem.cs" />
     <Compile Include="Menu\IMenuService.cs" />
