@@ -29,15 +29,34 @@
         private void InitializeComponent()
         {
             this.applicationMenuBar = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // applicationMenuBar
             // 
+            this.applicationMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
             this.applicationMenuBar.Location = new System.Drawing.Point(0, 0);
             this.applicationMenuBar.Name = "applicationMenuBar";
             this.applicationMenuBar.Size = new System.Drawing.Size(741, 24);
             this.applicationMenuBar.TabIndex = 0;
             this.applicationMenuBar.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Text = "Export";
             // 
             // Form1
             // 
@@ -48,6 +67,8 @@
             this.MainMenuStrip = this.applicationMenuBar;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.applicationMenuBar.ResumeLayout(false);
+            this.applicationMenuBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -56,6 +77,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip applicationMenuBar;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
     }
 }
 

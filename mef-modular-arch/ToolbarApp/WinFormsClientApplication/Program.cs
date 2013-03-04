@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -15,7 +16,9 @@ namespace WinFormsClientApplication
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Initialize();
         }
     }
 }

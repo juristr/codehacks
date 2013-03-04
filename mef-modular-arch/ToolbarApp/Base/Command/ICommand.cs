@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Base
+namespace Base.Command
 {
-    public interface IMenuService
+    public interface ICommand
     {
-        IMenu GetMenu(string menuName);
+        void Execute();
     }
 }

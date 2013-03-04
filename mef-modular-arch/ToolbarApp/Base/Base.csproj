@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMenu.cs" />
-    <Compile Include="IMenuItem.cs" />
-    <Compile Include="IMenuService.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="IModule.cs" />
+    <Compile Include="Menu\IMenu.cs" />
+    <Compile Include="Menu\IMenuItem.cs" />
+    <Compile Include="Menu\IMenuService.cs" />
     <Compile Include="IToolWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
