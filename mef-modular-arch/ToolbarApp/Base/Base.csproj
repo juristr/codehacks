@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="IModule.cs" />
+    <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="MefDebugger.cs" />
     <Compile Include="Menu\IMenu.cs" />
     <Compile Include="Menu\IMenuItem.cs" />

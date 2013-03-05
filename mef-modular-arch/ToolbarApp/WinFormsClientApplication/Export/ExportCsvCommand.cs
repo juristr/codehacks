@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
+using Base;
 
 namespace WinFormsClientApplication.Export
 {
@@ -14,8 +15,18 @@ namespace WinFormsClientApplication.Export
     {
         public void Execute()
         {
-            //normally I'd call here some service to do the job
-            MessageBox.Show("Exporting as CSV");
+            IValueProviderExtension valueProvider = Context as IValueProviderExtension;
+            if (valueProvider != null && !String.IsNullOrEmpty(valueProvider.Value))
+            {
+                MessageBox.Show("Exporting value \"" + valueProvider.Value + "\" as CSV");
+            }
+            else
+            {
+                MessageBox.Show("Exporting as CSV");
+            }
         }
+
+        [Import(typeof(IValueProviderExtension))]
+        public object Context { get; set; }
     }
 }

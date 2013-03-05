@@ -15,6 +15,8 @@ namespace WinFormsClientApplication.Export
         [Import("Command_ExportGDrive")]
         public ICommand Command { get; set; }
 
+        public string IValueWindow { get; set; }
+
         public ExportToGDriveMenu()
             : base("Export to GDrive")
         {

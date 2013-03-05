@@ -31,6 +31,7 @@
             this.applicationMenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.applicationMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,18 +56,27 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // flowLayoutPanelMain
+            // 
+            this.flowLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelMain.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
+            this.flowLayoutPanelMain.Size = new System.Drawing.Size(741, 386);
+            this.flowLayoutPanelMain.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 410);
+            this.Controls.Add(this.flowLayoutPanelMain);
             this.Controls.Add(this.applicationMenuBar);
             this.MainMenuStrip = this.applicationMenuBar;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Application Extension Demo";
             this.applicationMenuBar.ResumeLayout(false);
             this.applicationMenuBar.PerformLayout();
             this.ResumeLayout(false);
@@ -79,6 +89,7 @@
         private System.Windows.Forms.MenuStrip applicationMenuBar;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
     }
 }
 

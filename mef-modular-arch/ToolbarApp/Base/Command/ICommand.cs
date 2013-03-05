@@ -7,6 +7,7 @@ namespace Base.Command
 {
     public interface ICommand
     {
+        object Context { get; set; }
         void Execute();
     }
 }
