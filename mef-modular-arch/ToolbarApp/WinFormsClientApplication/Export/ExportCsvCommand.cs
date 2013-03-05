@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 
 namespace WinFormsClientApplication.Export
 {
-    [Export("Command_ExportCSV")]
+    [Export("Command_ExportCSV", typeof(ICommand))]
     [Export(typeof(ICommand))]
     public class ExportCsvCommand : ICommand
     {

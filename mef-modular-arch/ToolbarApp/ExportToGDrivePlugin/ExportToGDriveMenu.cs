@@ -12,7 +12,7 @@ namespace WinFormsClientApplication.Export
     [Export("Export", typeof(ToolStripMenuItem))]
     public class ExportToGDriveMenu : ToolStripMenuItem
     {
-        [Import("Command_ExportGDrive", typeof(ICommand))]
+        [Import("Command_ExportGDrive")]
         public ICommand Command { get; set; }
 
         public ExportToGDriveMenu()

@@ -26,13 +26,13 @@ namespace WinFormsClientApplication
 
             //this could be discovered dynamically (in case that behavior is needed)
             //NOTE: theres is an after build copy event that copies the plugin into the bin folder of this app
-            //var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
+            var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
 
-            //if (!Directory.Exists(pluginsDirectory))
-            //    Directory.CreateDirectory(pluginsDirectory);
+            if (!Directory.Exists(pluginsDirectory))
+                Directory.CreateDirectory(pluginsDirectory);
 
-            //var directoryCatalog = new DirectoryCatalog(pluginsDirectory);
-            //mainCatalog.Catalogs.Add(directoryCatalog);
+            var directoryCatalog = new DirectoryCatalog(pluginsDirectory);
+            mainCatalog.Catalogs.Add(directoryCatalog);
 
 
 

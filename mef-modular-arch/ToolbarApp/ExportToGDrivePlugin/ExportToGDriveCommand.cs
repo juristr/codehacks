@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace ExportToGDrivePlugin
 {
-    [Export("Command_ExportGDrive")]
+    [Export("Command_ExportGDrive", typeof(ICommand))]
     [Export(typeof(ICommand))]
-    class ExportToGDriveCommand : ICommand
+    public class ExportToGDriveCommand : ICommand
     {
         public void Execute()
         {
