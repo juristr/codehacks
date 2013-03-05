@@ -11,7 +11,7 @@ namespace WinFormsClientApplication.Export
 {
     [Export("Command_ExportCSV", typeof(ICommand))]
     [Export(typeof(ICommand))]
-    public class ExportCsvCommand : ICommand
+    class ExportCsvCommand : ICommand
     {
         public void Execute()
         {

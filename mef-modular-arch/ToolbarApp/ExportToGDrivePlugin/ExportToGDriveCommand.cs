@@ -1,5 +1,6 @@
 ﻿using Base;
 using Base.Command;
+using ExportToGDrivePlugin.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -11,8 +12,17 @@ namespace ExportToGDrivePlugin
 {
     [Export("Command_ExportGDrive", typeof(ICommand))]
     [Export(typeof(ICommand))]
-    public class ExportToGDriveCommand : ICommand
+    class ExportToGDriveCommand : ICommand
     {
+
+        private IGoogleAuthService AuthService { get; set; }
+
+        [ImportingConstructor]
+        public ExportToGDriveCommand(IGoogleAuthService authService)
+        {
+            AuthService = authService;
+        }
+
         public void Execute()
         {
             IValueProviderExtension valueProvider = Context as IValueProviderExtension;

@@ -48,6 +48,8 @@
     </Compile>
     <Compile Include="ExportToGDriveCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\GoogleAuthService.cs" />
+    <Compile Include="Service\IGoogleAuthService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.csproj">
