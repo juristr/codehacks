@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\CommandHandler.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\ICommandHandler.cs" />
+    <Compile Include="Command\UndoRedoStack.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
