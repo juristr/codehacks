@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Base.Command
 {
-    class UndoRedoStack<TItem>
+    class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {
         private Stack<TItem> UndoStack { get; set; }
         private Stack<TItem> RedoStack { get; set; }

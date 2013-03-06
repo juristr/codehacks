@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Command\UndoRedoStackTest.cs" />
+    <Compile Include="Command\CommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

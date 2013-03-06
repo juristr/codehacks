@@ -44,6 +44,7 @@
     <Compile Include="Command\CommandHandler.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandHandler.cs" />
+    <Compile Include="Command\IUndoRedoStack.cs" />
     <Compile Include="Command\UndoRedoStack.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />

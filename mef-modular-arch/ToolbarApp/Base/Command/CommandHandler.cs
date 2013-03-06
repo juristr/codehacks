@@ -7,12 +7,18 @@ using System.Text;
 namespace Base.Command
 {
     [Export(typeof(ICommandHandler))]
-    public class CommandHandler : ICommandHandler
+    class CommandHandler : ICommandHandler
     {
+        private IUndoRedoStack<ICommand> stack;
+
+        public CommandHandler(IUndoRedoStack<ICommand> undoRedoHandler)
+        {
+            stack = undoRedoHandler;
+        }
 
         public void Execute(ICommand command)
         {
-            throw new NotImplementedException();
+            command.Execute();
         }
 
         public void Redo(ICommand command)
