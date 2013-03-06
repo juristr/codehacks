@@ -32,13 +32,15 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // applicationMenuBar
             // 
             this.applicationMenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.pluginsToolStripMenuItem});
             this.applicationMenuBar.Location = new System.Drawing.Point(0, 0);
             this.applicationMenuBar.Name = "applicationMenuBar";
             this.applicationMenuBar.Size = new System.Drawing.Size(741, 24);
@@ -56,7 +58,7 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // flowLayoutPanelMain
@@ -66,6 +68,12 @@
             this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
             this.flowLayoutPanelMain.Size = new System.Drawing.Size(741, 386);
             this.flowLayoutPanelMain.TabIndex = 1;
+            // 
+            // pluginsToolStripMenuItem
+            // 
+            this.pluginsToolStripMenuItem.Name = "pluginsToolStripMenuItem";
+            this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.pluginsToolStripMenuItem.Text = "Plugins";
             // 
             // Form1
             // 
@@ -90,6 +98,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
+        private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
     }
 }
 

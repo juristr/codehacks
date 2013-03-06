@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,7 @@
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
+    <Compile Include="IWindowHost.cs" />
     <Compile Include="MefDebugger.cs" />
     <Compile Include="Menu\IMenu.cs" />
     <Compile Include="Menu\IMenuItem.cs" />

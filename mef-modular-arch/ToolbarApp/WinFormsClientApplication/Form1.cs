@@ -12,12 +12,16 @@ using System.Windows.Forms;
 namespace WinFormsClientApplication
 {
 
+    [Export(typeof(IWindowHost))]
     [Export(typeof(Form))]
-    public partial class Form1 : Form, IPartImportsSatisfiedNotification
+    public partial class Form1 : Form, IPartImportsSatisfiedNotification, IWindowHost
     {
 
         [ImportMany("Export", typeof(ToolStripMenuItem))]
         public IEnumerable<ToolStripMenuItem> ExportMenuItems { get; set; }
+
+        [ImportMany]
+        public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }
 
         [ImportMany]
         public IEnumerable<Control> ViewExtensions { get; set; }
@@ -36,20 +40,31 @@ namespace WinFormsClientApplication
                 flowLayoutPanelMain.Controls.Add(viewExtension);
             }
 
+            LoadMenus(exportToolStripMenuItem, ExportMenuItems);
+            LoadMenus(pluginsToolStripMenuItem, PluginMenus);
+        }
 
+        private void LoadMenus(ToolStripMenuItem parentNode, IEnumerable<ToolStripMenuItem> menuItems)
+        {
             //menu extensions
-            if (ExportMenuItems.Count() > 0)
+            if (menuItems.Count() > 0)
             {
-                foreach (var exportMenuItem in ExportMenuItems)
+                foreach (var exportMenuItem in menuItems)
                 {
-                    exportToolStripMenuItem.DropDownItems.Add(exportMenuItem);
+                    parentNode.DropDownItems.Add(exportMenuItem);
                 }
             }
             else
             {
-                exportToolStripMenuItem.Enabled = false;
+                parentNode.Enabled = false;
             }
         }
 
+
+        public void LoadWindow(Control control)
+        {
+            flowLayoutPanelMain.Controls.Clear();
+            flowLayoutPanelMain.Controls.Add(control);
+        }
     }
 }

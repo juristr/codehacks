@@ -66,7 +66,6 @@ namespace ClientApplication
             }
             else
             {
-
                 this.layout.Controls.Clear();
 
                 foreach (var pluginPart in PluginParts)
