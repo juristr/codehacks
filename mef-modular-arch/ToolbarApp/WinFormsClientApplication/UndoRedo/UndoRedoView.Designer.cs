@@ -87,6 +87,7 @@
             this.buttonUndo.TabIndex = 4;
             this.buttonUndo.Text = "Undo";
             this.buttonUndo.UseVisualStyleBackColor = true;
+            this.buttonUndo.Click += new System.EventHandler(this.buttonUndo_Click);
             // 
             // buttonRedo
             // 
@@ -96,6 +97,7 @@
             this.buttonRedo.TabIndex = 5;
             this.buttonRedo.Text = "Redo";
             this.buttonRedo.UseVisualStyleBackColor = true;
+            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
             // 
             // UndoRedoView
             // 

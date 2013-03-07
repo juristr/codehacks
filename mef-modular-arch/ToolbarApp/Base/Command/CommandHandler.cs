@@ -11,24 +11,47 @@ namespace Base.Command
     {
         private IUndoRedoStack<ICommand> stack;
 
-        public CommandHandler(IUndoRedoStack<ICommand> undoRedoHandler)
+        [ImportingConstructor]
+        public CommandHandler(
+            [Import(typeof(IUndoRedoStack<ICommand>))]
+            IUndoRedoStack<ICommand> undoRedoHandler)
         {
             stack = undoRedoHandler;
         }
 
         public void Execute(ICommand command)
         {
+            try
+            {
+                command.Execute();
+                stack.AddItem(command);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void Redo()
+        {
+            var command = stack.Redo();
+            if (command == null)
+            {
+                throw new ApplicationException();
+            }
+
             command.Execute();
         }
 
-        public void Redo(ICommand command)
+        public void Undo()
         {
-            throw new NotImplementedException();
-        }
+            var command = stack.Undo();
+            if (command == null)
+            {
+                throw new ApplicationException();
+            }
 
-        public void Undo(ICommand command)
-        {
-            throw new NotImplementedException();
+            command.Undo();
         }
     }
 }

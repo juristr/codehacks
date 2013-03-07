@@ -11,8 +11,8 @@ namespace Base.Command
     {
 
         void Execute(ICommand command);
-        void Redo(ICommand command);
-        void Undo(ICommand command);
+        void Redo();
+        void Undo();
 
     }
 }

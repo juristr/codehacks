@@ -1,4 +1,8 @@
 ﻿using Base;
+using Base.Command;
+using MefContrib.Hosting.Generics;
+using MefContrib.Hosting.Interception;
+using MefContrib.Hosting.Interception.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -22,24 +26,39 @@ namespace WinFormsClientApplication
 
         public void Initialize()
         {
-            mainCatalog = new AggregateCatalog(new AssemblyCatalog(GetType().Assembly));
+            try
+            {
+                mainCatalog = new AggregateCatalog(new AssemblyCatalog(GetType().Assembly));
 
-            //this could be discovered dynamically (in case that behavior is needed)
-            //NOTE: theres is an after build copy event that copies the plugin into the bin folder of this app
-            var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
+                mainCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ICommandHandler).Assembly));
 
-            if (!Directory.Exists(pluginsDirectory))
-                Directory.CreateDirectory(pluginsDirectory);
+                var typeCatalog = new TypeCatalog(typeof(GenericContractRegistry));
+                var cfg = new InterceptionConfiguration().AddHandler(new GenericExportHandler());
+                var interceptingCatalog = new InterceptingCatalog(typeCatalog, cfg);
+                mainCatalog.Catalogs.Add(interceptingCatalog);
 
-            var directoryCatalog = new DirectoryCatalog(pluginsDirectory);
-            mainCatalog.Catalogs.Add(directoryCatalog);
+                //this could be discovered dynamically (in case that behavior is needed)
+                //NOTE: theres is an after build copy event that copies the plugin into the bin folder of this app
+                var pluginsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "plugins");
 
+                if (!Directory.Exists(pluginsDirectory))
+                    Directory.CreateDirectory(pluginsDirectory);
 
+                var directoryCatalog = new DirectoryCatalog(pluginsDirectory);
+                
+                mainCatalog.Catalogs.Add(directoryCatalog);
 
-            container = new CompositionContainer(mainCatalog);
-            var debugger = new MefDebugger(container);
-            container.ComposeParts(this);
-            debugger.Close();
+                container = new CompositionContainer(mainCatalog);
+                var debugger = new MefDebugger(container);
+                container.ComposeParts(this);
+                debugger.Close();
+
+            }
+            catch (CompositionException ex)
+            {
+                Console.WriteLine("#### COMPOSITION EXCEPTION:");
+                Console.WriteLine(ex.Errors);
+            }
             
             Application.Run(Shell);
         }

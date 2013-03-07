@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
 namespace Base.Command
 {
+    [Export(typeof(IUndoRedoStack<ICommand>))]
     class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {
         private Stack<TItem> UndoStack { get; set; }

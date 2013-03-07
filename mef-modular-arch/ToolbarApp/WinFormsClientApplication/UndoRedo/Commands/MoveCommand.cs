@@ -29,5 +29,15 @@ namespace WinFormsClientApplication.UndoRedo.Commands
                 Destination.Add(DataItem);
             }
         }
+
+
+        public void Undo()
+        {
+            if (DataItem != null)
+            {
+                Source.Add(DataItem);
+                Destination.Remove(DataItem);
+            }
+        }
     }
 }

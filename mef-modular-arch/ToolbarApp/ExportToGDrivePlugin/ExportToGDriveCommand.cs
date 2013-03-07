@@ -38,5 +38,16 @@ namespace ExportToGDrivePlugin
 
         [Import(typeof(IValueProviderExtension))]
         public object Context { get; set; }
+
+
+        public void Undo()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Redo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace Base.Command
     {
         object Context { get; set; }
         void Execute();
+
+        void Undo();
     }
 }

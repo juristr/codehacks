@@ -21,6 +21,9 @@ namespace WinFormsClientApplication.UndoRedo
                 };
         private IList<string> DestinationItems = new BindingList<string>();
 
+        [Import]
+        public ICommandHandler CommandHandler { get; set; }
+
         public UndoRedoView()
         {
             InitializeComponent();
@@ -29,12 +32,17 @@ namespace WinFormsClientApplication.UndoRedo
             bindingDestinationList.DataSource = DestinationItems;
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+        }
+
         private void buttonMoveToDest_Click(object sender, EventArgs e)
         {
             var selectedItem = listBoxSource.SelectedItem;
 
             var command = new MoveCommand(SourceItems, DestinationItems, selectedItem as string);
-            command.Execute();
+            CommandHandler.Execute(command);
         }
 
         private void buttonMoveToSource_Click(object sender, EventArgs e)
@@ -42,7 +50,18 @@ namespace WinFormsClientApplication.UndoRedo
             var selectedItem = listBoxDestination.SelectedItem;
 
             var command = new MoveCommand(DestinationItems, SourceItems, selectedItem as string);
-            command.Execute();
+
+            CommandHandler.Execute(command);
+        }
+
+        private void buttonUndo_Click(object sender, EventArgs e)
+        {
+            CommandHandler.Undo();
+        }
+
+        private void buttonRedo_Click(object sender, EventArgs e)
+        {
+            CommandHandler.Redo();
         }
     }
 }
