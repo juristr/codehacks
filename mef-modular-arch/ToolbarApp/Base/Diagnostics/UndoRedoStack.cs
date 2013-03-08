@@ -43,10 +43,5 @@ namespace Base.Diagnostics
                                     this.redoStack.ResetBindings();
                                 };
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
