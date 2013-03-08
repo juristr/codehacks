@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Base.Command
 {
+    
     [Export(typeof(ICommandHandler))]
     class CommandHandler : ICommandHandler
     {
@@ -76,5 +77,10 @@ namespace Base.Command
             }
         }
 
+        public void CleanUp(IEnumerable<ICommand> ExecutedCommands)
+        {
+            stack.CleanUp(ExecutedCommands);
+            RaiseOperationExecuted();
+        }
     }
 }

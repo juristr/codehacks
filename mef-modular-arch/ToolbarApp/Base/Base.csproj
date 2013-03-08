@@ -48,9 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\CommandHandler.cs" />
+    <Compile Include="Command\ExecutionContext.cs" />
     <Compile Include="Command\GenericCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandHandler.cs" />
+    <Compile Include="Command\IExecutionContext.cs" />
     <Compile Include="Command\IUndoRedoStack.cs" />
     <Compile Include="Command\UndoRedoStack.cs" />
     <Compile Include="Diagnostics\UndoRedoStack.cs">

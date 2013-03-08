@@ -19,5 +19,7 @@ namespace Base.Command
         bool CanUndo { get; }
         bool CanRedo { get; }
 
+
+        void CleanUp(IEnumerable<TItem> ExecutedCommands);
     }
 }

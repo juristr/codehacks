@@ -19,7 +19,7 @@ namespace WinFormsClientApplication.ValueModule
         private BindingList<string> Values = new BindingList<string>();
 
         [Import]
-        public ICommandHandler CommandHandler { get; set; }
+        public IExecutionContext CommandHandler { get; set; }
 
         public ValueControl()
         {
@@ -31,7 +31,12 @@ namespace WinFormsClientApplication.ValueModule
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            this.Disposed += ValueControl_Disposed;
+        }
 
+        void ValueControl_Disposed(object sender, EventArgs e)
+        {
+            CommandHandler.Dispose();
         }
 
         public string Value

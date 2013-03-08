@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Base.Command
 {
-    class IUndoContext
+    public interface IExecutionContext : IDisposable
     {
+
+        void Execute(ICommand command);
+
     }
 }

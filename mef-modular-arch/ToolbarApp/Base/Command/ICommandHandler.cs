@@ -19,5 +19,7 @@ namespace Base.Command
 
         event EventHandler<OperationExecutionEventArgs> OperationExecuted;
 
+
+        void CleanUp(IEnumerable<ICommand> ExecutedCommands);
     }
 }

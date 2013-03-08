@@ -80,6 +80,16 @@ namespace Base.Command
         {
             get { return RedoStack.Count > 0; }
         }
+
+
+        public void CleanUp(IEnumerable<TItem> ExecutedCommands)
+        {
+            foreach (var cmd in ExecutedCommands)
+            {
+                UndoStack.Remove(cmd);
+                RedoStack.Remove(cmd);
+            }
+        }
     }
 
     static class ListStackExtension
