@@ -1,4 +1,5 @@
 ﻿using Base;
+using Base.Command;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +27,23 @@ namespace WinFormsClientApplication
         [ImportMany]
         public IEnumerable<Control> ViewExtensions { get; set; }
 
+        [Import]
+        public ICommandHandler CommandHandler { get; set; }
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            CommandHandler.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
+                    {
+                        undoToolStripMenuItem.Enabled = ev.CanUndo;
+                        redoToolStripMenuItem.Enabled = ev.CanRedo;
+                    };
         }
 
         public void OnImportsSatisfied()
@@ -65,6 +80,16 @@ namespace WinFormsClientApplication
         {
             flowLayoutPanelMain.Controls.Clear();
             flowLayoutPanelMain.Controls.Add(control);
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandHandler.Undo();
+        }
+
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CommandHandler.Redo();
         }
     }
 }

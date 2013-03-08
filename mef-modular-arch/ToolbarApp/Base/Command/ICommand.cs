@@ -7,6 +7,9 @@ namespace Base.Command
 {
     public interface ICommand
     {
+        //specifies whether a command can be undone...for certain operations this might not be possible
+        //bool CanUndo { get; }
+
         object Context { get; set; }
         void Execute();
 

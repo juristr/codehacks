@@ -6,19 +6,6 @@ using System.Text;
 
 namespace Base.Command
 {
-
-    public class OperationExecutionEventArgs : EventArgs
-    {
-        public OperationExecutionEventArgs(bool canUndo, bool canRedo)
-        {
-            CanUndo = canUndo;
-            CanRedo = canRedo;
-        }
-
-        public bool CanUndo { get; private set; }
-        public bool CanRedo { get; private set; }
-    }
-
     [Export(typeof(ICommandHandler))]
     class CommandHandler : ICommandHandler
     {

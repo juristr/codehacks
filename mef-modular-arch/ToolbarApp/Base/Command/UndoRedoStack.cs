@@ -9,37 +9,52 @@ namespace Base.Command
     [Export(typeof(IUndoRedoStack<ICommand>))]
     class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {
-        private Stack<TItem> UndoStack { get; set; }
+        public int _MaxStackSize = 20;
+        public int MaxStackSize
+        {
+            get { return _MaxStackSize; }
+            set { _MaxStackSize = value; }
+        }
+
+        private List<TItem> UndoStack { get; set; }
+        //private Stack<TItem> UndoStack { get; set; }
         private Stack<TItem> RedoStack { get; set; }
 
         public UndoRedoStack()
         {
-            UndoStack = new Stack<TItem>();
+            UndoStack = new List<TItem>();
             RedoStack = new Stack<TItem>();
         }
-
+        
         public void AddItem(TItem item)
         {
-            UndoStack.Push(item);
+            if (UndoStack.Count() >= MaxStackSize)
+            {
+                UndoStack.RemoveAt(0);
+            }
+
+            UndoStack.Add(item);
         }
 
         public TItem Undo()
         {
             TItem item = default(TItem);
-            if(CanUndo){
+            if (CanUndo)
+            {
                 item = UndoStack.Pop();
                 RedoStack.Push(item);
             }
-            
+
             return item;
         }
 
         public TItem Redo()
         {
             TItem item = default(TItem);
-            if(CanRedo){
+            if (CanRedo)
+            {
                 item = RedoStack.Pop();
-                UndoStack.Push(item);
+                UndoStack.Add(item);
             }
 
             return item;
@@ -63,6 +78,16 @@ namespace Base.Command
         public bool CanRedo
         {
             get { return RedoStack.Count > 0; }
+        }
+    }
+
+    static class ListStackExtension
+    {
+        public static TItem Pop<TItem>(this List<TItem> list)
+        {
+            var lastElement = list.Last();
+            list.Remove(lastElement);
+            return lastElement;
         }
     }
 }

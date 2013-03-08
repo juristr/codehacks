@@ -2,12 +2,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Base.Command;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Base.UnitTests.Command
 {
     class TestObject
     {
+        public int Index { get; private set; }
 
+        public TestObject(int idx = 0)
+        {
+            Index = idx;
+        }
     }
 
     public class UndoRedoStackTest
@@ -43,7 +49,6 @@ namespace Base.UnitTests.Command
                 Assert.AreEqual(item, resultItem, "the item should be the same");
             }
         }
-
 
         [TestClass]
         public class TheUndoMethod : UndoRedoStackTest
@@ -94,7 +99,7 @@ namespace Base.UnitTests.Command
                 var returnItem = stack.Undo();
 
                 //assert
-                Assert.AreEqual(addedObject, stack.RedoItems().ElementAt(0), "the object should be in the redo list");                
+                Assert.AreEqual(addedObject, stack.RedoItems().ElementAt(0), "the object should be in the redo list");
             }
 
             [TestMethod]
@@ -172,5 +177,53 @@ namespace Base.UnitTests.Command
             }
         }
 
+        [TestClass]
+        public class TheStackSizeLimit : UndoRedoStackTest
+        {
+
+            [TestMethod]
+            public void ShouldLimitTheStackSizeAccordingly()
+            {
+                //arrange & act
+                for (int i = 0; i < stack.MaxStackSize + 10; i++)
+                {
+                    stack.AddItem(new TestObject(i));
+                }
+
+                //assert
+                Assert.AreEqual(stack.MaxStackSize, stack.UndoItems().Count(), "There should be 10 undo objects in the stack");
+                Assert.AreEqual(stack.MaxStackSize - 10, stack.UndoItems().ElementAt(0).Index, "Id should match");
+
+                var objToUndo = stack.Undo();
+                Assert.AreEqual(stack.MaxStackSize + 10 - 1, objToUndo.Index, "Should be the last added object");
+            }
+
+        }
+
+        [TestClass]
+        public class TheStackPerformance : UndoRedoStackTest
+        {
+
+            //just to have get alerted about potential performance impacts in the implementation
+            [TestMethod]
+            public void ShouldProcess100000ItemsUnder15Ms()
+            {
+                //arrange
+                var stopw = new Stopwatch();
+                stopw.Start();
+
+                //act
+                for (int i = 0; i < 100000; i++)
+                {
+                    stack.AddItem(new TestObject(i));
+                }
+
+                //assert
+                stopw.Stop();
+
+                Assert.IsTrue(stopw.ElapsedMilliseconds < 15, "Should be faster than 100 ms (actual:" + stopw.ElapsedMilliseconds + ")");
+            }
+
+        }
     }
 }

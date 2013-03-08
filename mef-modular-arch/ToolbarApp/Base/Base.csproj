@@ -59,6 +59,7 @@
     <Compile Include="Menu\IMenuItem.cs" />
     <Compile Include="Menu\IMenuService.cs" />
     <Compile Include="IToolWindow.cs" />
+    <Compile Include="OperationExecutedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenericContractRegistry.cs" />
   </ItemGroup>

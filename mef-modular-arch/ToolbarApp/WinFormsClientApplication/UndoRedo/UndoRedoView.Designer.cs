@@ -35,8 +35,6 @@
             this.bindingDestinationList = new System.Windows.Forms.BindingSource(this.components);
             this.buttonMoveToDest = new System.Windows.Forms.Button();
             this.buttonMoveToSource = new System.Windows.Forms.Button();
-            this.buttonUndo = new System.Windows.Forms.Button();
-            this.buttonRedo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingDestinationList)).BeginInit();
             this.SuspendLayout();
@@ -79,34 +77,10 @@
             this.buttonMoveToSource.UseVisualStyleBackColor = true;
             this.buttonMoveToSource.Click += new System.EventHandler(this.buttonMoveToSource_Click);
             // 
-            // buttonUndo
-            // 
-            this.buttonUndo.Enabled = false;
-            this.buttonUndo.Location = new System.Drawing.Point(40, 3);
-            this.buttonUndo.Name = "buttonUndo";
-            this.buttonUndo.Size = new System.Drawing.Size(75, 23);
-            this.buttonUndo.TabIndex = 4;
-            this.buttonUndo.Text = "Undo";
-            this.buttonUndo.UseVisualStyleBackColor = true;
-            this.buttonUndo.Click += new System.EventHandler(this.buttonUndo_Click);
-            // 
-            // buttonRedo
-            // 
-            this.buttonRedo.Enabled = false;
-            this.buttonRedo.Location = new System.Drawing.Point(121, 3);
-            this.buttonRedo.Name = "buttonRedo";
-            this.buttonRedo.Size = new System.Drawing.Size(75, 23);
-            this.buttonRedo.TabIndex = 5;
-            this.buttonRedo.Text = "Redo";
-            this.buttonRedo.UseVisualStyleBackColor = true;
-            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
-            // 
             // UndoRedoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.buttonRedo);
-            this.Controls.Add(this.buttonUndo);
             this.Controls.Add(this.buttonMoveToSource);
             this.Controls.Add(this.buttonMoveToDest);
             this.Controls.Add(this.listBoxDestination);
@@ -125,8 +99,6 @@
         private System.Windows.Forms.ListBox listBoxDestination;
         private System.Windows.Forms.Button buttonMoveToDest;
         private System.Windows.Forms.Button buttonMoveToSource;
-        private System.Windows.Forms.Button buttonUndo;
-        private System.Windows.Forms.Button buttonRedo;
         private System.Windows.Forms.BindingSource bindingSourceList;
         private System.Windows.Forms.BindingSource bindingDestinationList;
     }

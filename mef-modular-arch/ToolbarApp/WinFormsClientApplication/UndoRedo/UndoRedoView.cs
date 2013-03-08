@@ -35,12 +35,6 @@ namespace WinFormsClientApplication.UndoRedo
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
-            CommandHandler.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
-                            {
-                                buttonUndo.Enabled = ev.CanUndo;
-                                buttonRedo.Enabled = ev.CanRedo;
-                            };
         }
 
         private void buttonMoveToDest_Click(object sender, EventArgs e)
@@ -58,16 +52,6 @@ namespace WinFormsClientApplication.UndoRedo
             var command = new MoveCommand(DestinationItems, SourceItems, selectedItem as string);
 
             CommandHandler.Execute(command);
-        }
-
-        private void buttonUndo_Click(object sender, EventArgs e)
-        {
-            CommandHandler.Undo();
-        }
-
-        private void buttonRedo_Click(object sender, EventArgs e)
-        {
-            CommandHandler.Redo();
         }
     }
 }
