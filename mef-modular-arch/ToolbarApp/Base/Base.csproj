@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,14 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\CommandHandler.cs" />
+    <Compile Include="Command\GenericCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\ICommandHandler.cs" />
     <Compile Include="Command\IUndoRedoStack.cs" />
     <Compile Include="Command\UndoRedoStack.cs" />
+    <Compile Include="Diagnostics\UndoRedoStack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Diagnostics\UndoRedoStack.Designer.cs">
+      <DependentUpon>UndoRedoStack.cs</DependentUpon>
+    </Compile>
     <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
-    <Compile Include="MefDebugger.cs" />
+    <Compile Include="Diagnostics\MefDebugger.cs" />
     <Compile Include="Menu\IMenu.cs" />
     <Compile Include="Menu\IMenuItem.cs" />
     <Compile Include="Menu\IMenuService.cs" />
@@ -65,6 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Diagnostics\UndoRedoStack.resx">
+      <DependentUpon>UndoRedoStack.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

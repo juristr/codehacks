@@ -77,6 +77,9 @@
     <Compile Include="UndoRedo\UndoRedoView.Designer.cs">
       <DependentUpon>UndoRedoView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ValueModule\OpenValueControlMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ValueModule\ValueControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

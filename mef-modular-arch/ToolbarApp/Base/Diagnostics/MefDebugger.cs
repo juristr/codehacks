@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 
-namespace Base
+namespace Base.Diagnostics
 {
        /// <summary>
     ///     Helper class for debugging MEF

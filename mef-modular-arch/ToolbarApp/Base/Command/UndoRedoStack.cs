@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,12 @@ namespace Base.Command
 
         private List<TItem> UndoStack { get; set; }
         //private Stack<TItem> UndoStack { get; set; }
-        private Stack<TItem> RedoStack { get; set; }
+        private List<TItem> RedoStack { get; set; }
 
         public UndoRedoStack()
         {
             UndoStack = new List<TItem>();
-            RedoStack = new Stack<TItem>();
+            RedoStack = new List<TItem>();
         }
         
         public void AddItem(TItem item)
@@ -42,7 +43,7 @@ namespace Base.Command
             if (CanUndo)
             {
                 item = UndoStack.Pop();
-                RedoStack.Push(item);
+                RedoStack.Add(item);
             }
 
             return item;
@@ -60,14 +61,14 @@ namespace Base.Command
             return item;
         }
 
-        public IEnumerable<TItem> UndoItems()
+        public ReadOnlyCollection<TItem> UndoItems()
         {
-            return UndoStack.ToList();
+            return UndoStack.AsReadOnly();
         }
 
-        public IEnumerable<TItem> RedoItems()
+        public ReadOnlyCollection<TItem> RedoItems()
         {
-            return RedoStack.ToList();
+            return RedoStack.AsReadOnly();
         }
 
         public bool CanUndo

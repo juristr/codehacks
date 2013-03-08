@@ -24,11 +24,11 @@ namespace WinFormsClientApplication
         [ImportMany]
         public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }
 
-        [ImportMany]
-        public IEnumerable<Control> ViewExtensions { get; set; }
-
         [Import]
         public ICommandHandler CommandHandler { get; set; }
+
+        [Import]
+        public Base.Diagnostics.UndoRedoStack UndoRedoStackDiagnosticsWindow { get; set; }
 
         public Form1()
         {
@@ -49,11 +49,11 @@ namespace WinFormsClientApplication
         public void OnImportsSatisfied()
         {
             //view extensions
-            flowLayoutPanelMain.Controls.Clear();
-            foreach (var viewExtension in ViewExtensions)
-            {
-                flowLayoutPanelMain.Controls.Add(viewExtension);
-            }
+            //flowLayoutPanelMain.Controls.Clear();
+            //foreach (var viewExtension in ViewExtensions)
+            //{
+            //    flowLayoutPanelMain.Controls.Add(viewExtension);
+            //}
 
             LoadMenus(exportToolStripMenuItem, ExportMenuItems);
             LoadMenus(pluginsToolStripMenuItem, PluginMenus);
@@ -78,6 +78,13 @@ namespace WinFormsClientApplication
 
         public void LoadWindow(Control control)
         {
+            //var controls = flowLayoutPanelMain.Controls;
+            //foreach (Control ctrl in controls)
+            //{
+            //    flowLayoutPanelMain.Controls.Remove(ctrl);
+            //    ctrl.Dispose();
+            //}
+
             flowLayoutPanelMain.Controls.Clear();
             flowLayoutPanelMain.Controls.Add(control);
         }
@@ -90,6 +97,11 @@ namespace WinFormsClientApplication
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CommandHandler.Redo();
+        }
+
+        private void openUndoRedoStackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UndoRedoStackDiagnosticsWindow.Show();   
         }
     }
 }

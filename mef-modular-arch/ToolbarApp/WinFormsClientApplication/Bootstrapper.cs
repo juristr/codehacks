@@ -1,5 +1,6 @@
 ﻿using Base;
 using Base.Command;
+using Base.Diagnostics;
 using MefContrib.Hosting.Generics;
 using MefContrib.Hosting.Interception;
 using MefContrib.Hosting.Interception.Configuration;

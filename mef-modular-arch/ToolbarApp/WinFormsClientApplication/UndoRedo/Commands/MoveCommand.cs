@@ -30,13 +30,20 @@ namespace WinFormsClientApplication.UndoRedo.Commands
             }
         }
 
-
         public void Undo()
         {
             if (DataItem != null)
             {
                 Source.Add(DataItem);
                 Destination.Remove(DataItem);
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return "Moved " + DataItem;
             }
         }
     }

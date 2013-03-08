@@ -109,5 +109,10 @@ namespace Base.UnitTests.Command
         {
             valObj.Number--;
         }
+
+        public string Description
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

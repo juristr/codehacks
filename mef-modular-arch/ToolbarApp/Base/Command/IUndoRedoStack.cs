@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -12,8 +13,8 @@ namespace Base.Command
         TItem Undo();
         TItem Redo();
 
-        IEnumerable<TItem> UndoItems();
-        IEnumerable<TItem> RedoItems();
+        ReadOnlyCollection<TItem> UndoItems();
+        ReadOnlyCollection<TItem> RedoItems();
 
         bool CanUndo { get; }
         bool CanRedo { get; }

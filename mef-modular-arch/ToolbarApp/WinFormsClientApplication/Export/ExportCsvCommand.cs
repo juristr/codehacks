@@ -39,5 +39,10 @@ namespace WinFormsClientApplication.Export
         {
             throw new NotImplementedException();
         }
+
+        public string Description
+        {
+            get { return "Exporting value"; }
+        }
     }
 }

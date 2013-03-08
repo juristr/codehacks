@@ -27,6 +27,11 @@ namespace Base.UnitTests.Command
         {
             HasUndone = true;
         }
+
+        public string Description
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 
     public class CommandHandlerTest

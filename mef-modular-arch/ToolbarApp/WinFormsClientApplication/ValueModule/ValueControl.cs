@@ -8,21 +8,57 @@ using System.Text;
 using System.Windows.Forms;
 using Base;
 using System.ComponentModel.Composition;
+using Base.Command;
 
 namespace WinFormsClientApplication.ValueModule
 {
     [Export(typeof(IValueProviderExtension))]
-    [Export(typeof(Control))]
+    [Export(typeof(ValueControl))]
     public partial class ValueControl : UserControl, IValueProviderExtension
     {
+        private BindingList<string> Values = new BindingList<string>();
+
+        [Import]
+        public ICommandHandler CommandHandler { get; set; }
+
         public ValueControl()
         {
             InitializeComponent();
+
+            bindingSourceList.DataSource = Values;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
         }
 
         public string Value
         {
             get { return textBoxValue.Text; }
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            var text = textBoxValue.Text;
+
+            if (!String.IsNullOrEmpty(text))
+            {
+                CommandHandler.Execute(
+                    new GenericCommand(
+                        () =>
+                        {
+                            Values.Add(text);
+                        },
+                        () =>
+                        {
+                            Values.Remove(text);
+                        }));
+                textBoxValue.Text = "";
+            }
+
+            textBoxValue.Focus();
         }
     }
 }

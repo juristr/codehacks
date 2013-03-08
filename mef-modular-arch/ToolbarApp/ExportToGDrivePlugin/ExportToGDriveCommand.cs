@@ -49,5 +49,10 @@ namespace ExportToGDrivePlugin
         {
             throw new NotImplementedException();
         }
+
+        public string Description
+        {
+            get { return "Export to GDrive"; }
+        }
     }
 }
