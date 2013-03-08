@@ -23,7 +23,7 @@ require.config
 require([
   'app/builder/builder',
   'bootstrap'
-], (Builder) ->
+], (Builder, bootstrap) ->
   new Builder $('.js-main-content')
   #can.$('.js-main-content').html '<h1>Test</h1>'
   #new Builder can.$('.js-main-content')
