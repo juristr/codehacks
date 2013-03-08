@@ -58,23 +58,27 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1; //return the number of elements of the array, namely x cells;
+    return 1; //the number of sections of the table; in this example here we just want a single one
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self._myArray count];
+    return [self._myArray count]; //return the number of elements of the array, namely x cells;
 }
 
+//this function is called for each entry in associated datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *MyIdentifier = @"MyIdentifier";
     
+    //try to reuse the cell; this is for performance reasons to only have as much cell objects in
+    //memory as currently displayed on the screen
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     
+    //the cell is not nil if we got a reused one
     if(cell == nil){
         //only create cells if necessary, otherwise they get reused (performance enhancements)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:MyIdentifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //arrow at the left side
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //displays an arrow at the right side
     }
     
     //update the text label
