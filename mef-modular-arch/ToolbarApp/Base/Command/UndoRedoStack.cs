@@ -25,15 +25,23 @@ namespace Base.Command
 
         public TItem Undo()
         {
-            var item =  UndoStack.Pop();
-            RedoStack.Push(item);
+            TItem item = default(TItem);
+            if(CanUndo){
+                item = UndoStack.Pop();
+                RedoStack.Push(item);
+            }
+            
             return item;
         }
 
         public TItem Redo()
         {
-            var item = RedoStack.Pop();
-            UndoStack.Push(item);
+            TItem item = default(TItem);
+            if(CanRedo){
+                item = RedoStack.Pop();
+                UndoStack.Push(item);
+            }
+
             return item;
         }
 
@@ -47,5 +55,14 @@ namespace Base.Command
             return RedoStack.ToList();
         }
 
+        public bool CanUndo
+        {
+            get { return UndoStack.Count > 0; }
+        }
+
+        public bool CanRedo
+        {
+            get { return RedoStack.Count > 0; }
+        }
     }
 }

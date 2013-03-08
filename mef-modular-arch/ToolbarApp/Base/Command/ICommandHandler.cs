@@ -14,5 +14,10 @@ namespace Base.Command
         void Redo();
         void Undo();
 
+        bool CanUndo();
+        bool CanRedo();
+
+        event EventHandler<OperationExecutionEventArgs> OperationExecuted;
+
     }
 }

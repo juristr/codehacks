@@ -35,6 +35,12 @@ namespace WinFormsClientApplication.UndoRedo
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+
+            CommandHandler.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
+                            {
+                                buttonUndo.Enabled = ev.CanUndo;
+                                buttonRedo.Enabled = ev.CanRedo;
+                            };
         }
 
         private void buttonMoveToDest_Click(object sender, EventArgs e)

@@ -81,6 +81,7 @@
             // 
             // buttonUndo
             // 
+            this.buttonUndo.Enabled = false;
             this.buttonUndo.Location = new System.Drawing.Point(40, 3);
             this.buttonUndo.Name = "buttonUndo";
             this.buttonUndo.Size = new System.Drawing.Size(75, 23);
@@ -91,6 +92,7 @@
             // 
             // buttonRedo
             // 
+            this.buttonRedo.Enabled = false;
             this.buttonRedo.Location = new System.Drawing.Point(121, 3);
             this.buttonRedo.Name = "buttonRedo";
             this.buttonRedo.Size = new System.Drawing.Size(75, 23);

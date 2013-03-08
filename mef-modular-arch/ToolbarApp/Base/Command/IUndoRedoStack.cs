@@ -15,5 +15,8 @@ namespace Base.Command
         IEnumerable<TItem> UndoItems();
         IEnumerable<TItem> RedoItems();
 
+        bool CanUndo { get; }
+        bool CanRedo { get; }
+
     }
 }

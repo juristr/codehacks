@@ -6,6 +6,19 @@ using System.Text;
 
 namespace Base.Command
 {
+
+    public class OperationExecutionEventArgs : EventArgs
+    {
+        public OperationExecutionEventArgs(bool canUndo, bool canRedo)
+        {
+            CanUndo = canUndo;
+            CanRedo = canRedo;
+        }
+
+        public bool CanUndo { get; private set; }
+        public bool CanRedo { get; private set; }
+    }
+
     [Export(typeof(ICommandHandler))]
     class CommandHandler : ICommandHandler
     {
@@ -25,6 +38,7 @@ namespace Base.Command
             {
                 command.Execute();
                 stack.AddItem(command);
+                RaiseOperationExecuted();
             }
             catch
             {
@@ -41,6 +55,7 @@ namespace Base.Command
             }
 
             command.Execute();
+            RaiseOperationExecuted();
         }
 
         public void Undo()
@@ -52,6 +67,27 @@ namespace Base.Command
             }
 
             command.Undo();
+            RaiseOperationExecuted();
         }
+
+        public bool CanUndo()
+        {
+            return stack.CanUndo;
+        }
+
+        public bool CanRedo()
+        {
+            return stack.CanRedo;
+        }
+
+        public event EventHandler<OperationExecutionEventArgs> OperationExecuted;
+        protected void RaiseOperationExecuted()
+        {
+            if (OperationExecuted != null)
+            {
+                OperationExecuted(this, new OperationExecutionEventArgs(stack.CanUndo, stack.CanRedo));
+            }
+        }
+
     }
 }

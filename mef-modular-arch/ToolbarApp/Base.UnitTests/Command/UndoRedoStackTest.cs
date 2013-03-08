@@ -54,9 +54,6 @@ namespace Base.UnitTests.Command
             public new void SetUp()
             {
                 base.SetUp();
-
-                addedObject = new TestObject();
-                stack.AddItem(addedObject);
             }
 
             [TestCleanup()]
@@ -66,11 +63,20 @@ namespace Base.UnitTests.Command
 
                 addedObject = null;
                 stack = null;
-            }	
+            }
+
+            private void PrepareStackToPerformUndo()
+            {
+                addedObject = new TestObject();
+                stack.AddItem(addedObject);
+            }
 
             [TestMethod]
             public void ShouldCorrectlyReturnAPreviouslyAddedUndoItem()
             {
+                //arrange
+                PrepareStackToPerformUndo();
+
                 //act
                 var returnItem = stack.Undo();
 
@@ -81,11 +87,24 @@ namespace Base.UnitTests.Command
             [TestMethod]
             public void ShouldHaveAnItemInTheRedoListWhenPerformingAnUndo()
             {
+                //arrange
+                PrepareStackToPerformUndo();
+
                 //act
                 var returnItem = stack.Undo();
 
                 //assert
                 Assert.AreEqual(addedObject, stack.RedoItems().ElementAt(0), "the object should be in the redo list");                
+            }
+
+            [TestMethod]
+            public void ShouldReturnNullWhenPerformingAnUndoAndTheStackIsEmpty()
+            {
+                //act
+                var item = stack.Undo();
+
+                //assert
+                Assert.IsNull(item, "the returned item should be null as there is nothing to be redone");
             }
         }
 
@@ -98,10 +117,6 @@ namespace Base.UnitTests.Command
             public new void SetUp()
             {
                 base.SetUp();
-
-                undoneObject = new TestObject();
-                stack.AddItem(undoneObject);
-                stack.Undo(); //so we now should have it in the redo list
             }
 
             [TestCleanup()]
@@ -113,9 +128,19 @@ namespace Base.UnitTests.Command
                 stack = null;
             }
 
+            private void PrepareStackWithItemToPerformRedo()
+            {
+                undoneObject = new TestObject();
+                stack.AddItem(undoneObject);
+                stack.Undo(); //so we now should have it in the redo list
+            }
+
             [TestMethod]
             public void ShouldReturnTheObjectToRedo()
             {
+                //arrange
+                PrepareStackWithItemToPerformRedo();
+
                 //act
                 var item = stack.Redo();
 
@@ -126,6 +151,9 @@ namespace Base.UnitTests.Command
             [TestMethod]
             public void ShouldHaveTheItemInTheUndoListWhenPerformingAgainARedo()
             {
+                //arrange
+                PrepareStackWithItemToPerformRedo();
+
                 //act
                 stack.Redo();
 
@@ -133,6 +161,15 @@ namespace Base.UnitTests.Command
                 Assert.AreEqual(undoneObject, stack.UndoItems().ElementAt(0));
             }
 
+            [TestMethod]
+            public void ShouldReturnNullWhenPerformingAnUndoAndTheStackIsEmpty()
+            {
+                //act
+                var item = stack.Redo();
+
+                //assert
+                Assert.IsNull(item, "the returned item should be null as there is nothing to be redone");
+            }
         }
 
     }
