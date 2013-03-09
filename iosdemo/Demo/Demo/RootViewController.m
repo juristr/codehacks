@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 
 //class extension; definitions here are not visible "outside", basically internal class visiblity
-@interface RootViewController () <UITableViewDataSource> //this protocol is needed for allowing the view to fetch the data from us
+@interface RootViewController () <UITableViewDataSource, UITableViewDelegate> //these are the protocol definitions, for fetching data and for allowing to click on the list entry
 
 @property(nonatomic, strong) UITableView *_myTableView;
 @property(nonatomic, strong) NSArray *_myArray;
@@ -52,10 +52,14 @@
     //CG stands for CoreGraphics -> see under Frameworks
     //The 0, 0, 320, 416 are the hardcoded width of a standard iPhone; in real world these should be read out dynamically
     self._myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 416) style:UITableViewStylePlain];
+
+    //register this controller as a datasource for the table view; note that we implemented the according protocol "UITableViewDataSource"
     self._myTableView.dataSource = self;
-    
+    self._myTableView.delegate = self;
     [self.view addSubview:self._myTableView];
 }
+
+#pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1; //the number of sections of the table; in this example here we just want a single one
@@ -85,6 +89,13 @@
     cell.textLabel.text = [self._myArray objectAtIndex:indexPath.row]; //the indexPath.row is the current index (invoked for each element of the datasource)
     
     return cell;
+}
+
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    RootViewController *rvc = [[RootViewController alloc] init];
+    [self.navigationController pushViewController:rvc animated:YES];
 }
 
 
