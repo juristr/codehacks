@@ -55,6 +55,8 @@
 
     //register this controller as a datasource for the table view; note that we implemented the according protocol "UITableViewDataSource"
     self._myTableView.dataSource = self;
+    
+    //register this controller as a handler for the click events on the table rows (see implemented protocol on top)
     self._myTableView.delegate = self;
     [self.view addSubview:self._myTableView];
 }
