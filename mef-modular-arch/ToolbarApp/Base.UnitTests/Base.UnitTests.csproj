@@ -63,6 +63,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Command\CommandHandlerTest.Acceptance.cs" />
+    <Compile Include="Command\CommandExecutionContextTest.Acceptance.cs" />
+    <Compile Include="Command\UndoRedoStackTest.Performance.cs" />
     <Compile Include="Command\UndoRedoStackTest.cs" />
     <Compile Include="Command\CommandHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

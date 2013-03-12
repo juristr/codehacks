@@ -8,14 +8,14 @@ using System.Text;
 namespace Base.Command
 {
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [Export(typeof(IExecutionContext))]
-    class ExecutionContext : IExecutionContext
+    [Export(typeof(ICommandExecutionContext))]
+    class CommandExecutionContext : ICommandExecutionContext
     {
         private ICommandHandler CommandHandler { get; set; }
         private IList<ICommand> ExecutedCommands { get; set; }
 
         [ImportingConstructor]
-        public ExecutionContext(ICommandHandler commandHandler)
+        public CommandExecutionContext(ICommandHandler commandHandler)
         {
             this.CommandHandler = commandHandler;
             ExecutedCommands = new List<ICommand>();

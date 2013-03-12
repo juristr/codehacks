@@ -22,7 +22,7 @@ namespace WinFormsClientApplication.UndoRedo
         private IList<string> DestinationItems = new BindingList<string>();
 
         [Import]
-        public IExecutionContext CommandHandler { get; set; }
+        public ICommandExecutionContext CommandHandler { get; set; }
 
         public UndoRedoView()
         {

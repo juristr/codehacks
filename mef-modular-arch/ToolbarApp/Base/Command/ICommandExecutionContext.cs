@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Base.Command
 {
-    public interface IExecutionContext : IDisposable
+    public interface ICommandExecutionContext : IDisposable
     {
 
         void Execute(ICommand command);
