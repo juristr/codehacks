@@ -6,11 +6,13 @@ using System.Text;
 
 namespace Base.Command
 {
-    
+
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     [Export(typeof(ICommandHandler))]
     class CommandHandler : ICommandHandler
     {
         private IUndoRedoStack<ICommand> stack;
+        private IList<ICommand> ExecutedCommands { get; set; }
 
         [ImportingConstructor]
         public CommandHandler(
@@ -18,6 +20,7 @@ namespace Base.Command
             IUndoRedoStack<ICommand> undoRedoHandler)
         {
             stack = undoRedoHandler;
+            ExecutedCommands = new List<ICommand>();
         }
 
         public void Execute(ICommand command)
@@ -26,6 +29,7 @@ namespace Base.Command
             {
                 command.Execute();
                 stack.AddItem(command);
+                ExecutedCommands.Add(command);
                 RaiseOperationExecuted();
             }
             catch
@@ -81,6 +85,11 @@ namespace Base.Command
         {
             stack.CleanUp(ExecutedCommands);
             RaiseOperationExecuted();
+        }
+
+        public void Dispose()
+        {
+            stack.CleanUp(ExecutedCommands);
         }
     }
 }

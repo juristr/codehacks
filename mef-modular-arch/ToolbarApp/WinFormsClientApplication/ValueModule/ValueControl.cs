@@ -20,7 +20,7 @@ namespace WinFormsClientApplication.ValueModule
         private BindingList<string> Values = new BindingList<string>();
 
         [Import]
-        public ICommandExecutionContext CommandHandler { get; set; }
+        public ICommandHandler CommandHandler { get; set; }
 
         public ValueControl()
         {

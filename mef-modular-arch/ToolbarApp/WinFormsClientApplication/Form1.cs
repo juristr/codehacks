@@ -24,8 +24,8 @@ namespace WinFormsClientApplication
         [ImportMany]
         public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }
 
-        [Import]
-        public ICommandHandler CommandHandler { get; set; }
+        [Import(typeof(IPublicUndoRedoStack<ICommand>))]
+        public IPublicUndoRedoStack<ICommand> CommandStack { get; set; }
 
         [Import]
         public Base.Diagnostics.UndoRedoStack UndoRedoStackDiagnosticsWindow { get; set; }
@@ -39,11 +39,12 @@ namespace WinFormsClientApplication
         {
             base.OnLoad(e);
 
-            CommandHandler.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
-                    {
-                        undoToolStripMenuItem.Enabled = ev.CanUndo;
-                        redoToolStripMenuItem.Enabled = ev.CanRedo;
-                    };
+            //TODO
+            //CommandStack.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
+            //        {
+            //            undoToolStripMenuItem.Enabled = ev.CanUndo;
+            //            redoToolStripMenuItem.Enabled = ev.CanRedo;
+            //        };
         }
 
         public void OnImportsSatisfied()
@@ -83,12 +84,12 @@ namespace WinFormsClientApplication
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CommandHandler.Undo();
+            CommandStack.Undo();
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CommandHandler.Redo();
+            CommandStack.Redo();
         }
 
         private void openUndoRedoStackToolStripMenuItem_Click(object sender, EventArgs e)

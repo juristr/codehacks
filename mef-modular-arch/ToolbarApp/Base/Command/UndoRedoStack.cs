@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Base.Command
 {
+    [Export(typeof(IPublicUndoRedoStack<ICommand>))]
     [Export(typeof(IUndoRedoStack<ICommand>))]
     class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {

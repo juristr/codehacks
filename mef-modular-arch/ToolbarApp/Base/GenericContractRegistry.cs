@@ -15,6 +15,7 @@ namespace Base
         protected override void Initialize()
         {
             Register(typeof(IUndoRedoStack<>), typeof(UndoRedoStack<>));
+            Register(typeof(IPublicUndoRedoStack<>), typeof(UndoRedoStack<>));
         }
     }
 }
