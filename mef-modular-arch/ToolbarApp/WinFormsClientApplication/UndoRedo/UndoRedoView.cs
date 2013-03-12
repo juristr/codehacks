@@ -30,11 +30,17 @@ namespace WinFormsClientApplication.UndoRedo
 
             bindingSourceList.DataSource = SourceItems;
             bindingDestinationList.DataSource = DestinationItems;
+
+
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            this.Disposed += (s, ev) =>
+                        {
+                            CommandHandler.Dispose();
+                        };
         }
 
         private void buttonMoveToDest_Click(object sender, EventArgs e)

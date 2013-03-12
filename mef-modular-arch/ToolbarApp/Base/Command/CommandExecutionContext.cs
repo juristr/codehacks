@@ -31,7 +31,7 @@ namespace Base.Command
             catch (Exception e)
             {
                 //log??
-                Console.Error.WriteLine("ExecutionContext: " + e.Message);
+                Console.Error.WriteLine("CommandExecutionContext: " + e.Message);
             }
         }
 
