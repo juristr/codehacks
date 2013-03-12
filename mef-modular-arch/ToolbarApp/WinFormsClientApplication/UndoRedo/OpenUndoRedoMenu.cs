@@ -13,8 +13,11 @@ namespace WinFormsClientApplication.Export
     [Export(typeof(ToolStripMenuItem))]
     public class OpenUndoRedoMenu : ToolStripMenuItem
     {
-        [Import(typeof(UndoRedoView))]
-        public UserControl UndoRedoView { get; set; }
+
+        private UndoRedoView Control { get; set; }
+        
+        [Import]
+        public ExportFactory<UndoRedoView> View { get; set; }
 
         [Import]
         public IWindowHost WindowHost { get; set; }
@@ -28,7 +31,13 @@ namespace WinFormsClientApplication.Export
 
         protected override void OnClick(EventArgs e)
         {
-            WindowHost.LoadWindow(UndoRedoView);
+            if (Control == null || Control.IsDisposed)
+            {
+                var viewExportLifetimeCtx = View.CreateExport();
+                Control = viewExportLifetimeCtx.Value;
+            }
+
+            WindowHost.LoadWindow(Control);
         }
     }
 }

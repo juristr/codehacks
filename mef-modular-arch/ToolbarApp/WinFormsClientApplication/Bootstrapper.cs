@@ -4,6 +4,7 @@ using Base.Diagnostics;
 using MefContrib.Hosting.Generics;
 using MefContrib.Hosting.Interception;
 using MefContrib.Hosting.Interception.Configuration;
+using Microsoft.ComponentModel.Composition.Hosting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -49,7 +50,10 @@ namespace WinFormsClientApplication
                 
                 mainCatalog.Catalogs.Add(directoryCatalog);
 
-                container = new CompositionContainer(mainCatalog);
+                var exportFactoryProvider = new ExportFactoryProvider();
+                container = new CompositionContainer(mainCatalog, exportFactoryProvider);
+                exportFactoryProvider.SourceProvider = container;
+                
                 var debugger = new MefDebugger(container);
                 container.ComposeParts(this);
                 debugger.Close();
@@ -58,7 +62,7 @@ namespace WinFormsClientApplication
             catch (CompositionException ex)
             {
                 Console.WriteLine("#### COMPOSITION EXCEPTION:");
-                Console.WriteLine(ex.Errors);
+                Console.WriteLine(ex.Message);
             }
             
             Application.Run(Shell);

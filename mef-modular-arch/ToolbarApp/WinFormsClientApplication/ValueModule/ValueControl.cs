@@ -14,7 +14,8 @@ namespace WinFormsClientApplication.ValueModule
 {
     [Export(typeof(IValueProviderExtension))]
     [Export(typeof(ValueControl))]
-    public partial class ValueControl : UserControl, IValueProviderExtension
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    partial class ValueControl : UserControl, IValueProviderExtension
     {
         private BindingList<string> Values = new BindingList<string>();
 

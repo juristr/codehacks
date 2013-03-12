@@ -1,6 +1,6 @@
 ﻿namespace WinFormsClientApplication.ValueModule
 {
-    partial class ValueControl
+    public partial class ValueControl
     {
         /// <summary> 
         /// Required designer variable.

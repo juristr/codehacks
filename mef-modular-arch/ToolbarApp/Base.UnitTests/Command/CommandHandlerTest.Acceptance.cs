@@ -115,4 +115,31 @@ namespace Base.UnitTests.Command
             get { throw new NotImplementedException(); }
         }
     }
+
+    class AddTwoCommand : ICommand
+    {
+        private ValueObject valObj;
+
+        public AddTwoCommand(ValueObject valObj)
+        {
+            this.valObj = valObj;
+        }
+
+        public object Context { get; set; }
+
+        public void Execute()
+        {
+            valObj.Number = valObj.Number + 2;
+        }
+
+        public void Undo()
+        {
+            valObj.Number = valObj.Number - 2;
+        }
+
+        public string Description
+        {
+            get { throw new NotImplementedException(); }
+        }
+    }
 }

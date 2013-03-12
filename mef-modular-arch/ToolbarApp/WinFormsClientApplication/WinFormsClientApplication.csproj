@@ -122,6 +122,10 @@
       <Project>{1184ea25-06f0-4317-b65e-8298a06040c2}</Project>
       <Name>Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop_4.csproj">
+      <Project>{23feb1ca-f29c-480f-a79e-e4b359621352}</Project>
+      <Name>ComponentModel.Composition.Initialization.Desktop_4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

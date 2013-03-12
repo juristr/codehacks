@@ -75,7 +75,6 @@ namespace WinFormsClientApplication
             foreach (Control ctrl in controls)
             {
                 flowLayoutPanelMain.Controls.Remove(ctrl);
-                ctrl.Dispose();
             }
 
             flowLayoutPanelMain.Controls.Clear();
@@ -95,6 +94,16 @@ namespace WinFormsClientApplication
         private void openUndoRedoStackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UndoRedoStackDiagnosticsWindow.Show();   
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var controls = flowLayoutPanelMain.Controls;
+            foreach (Control ctrl in controls)
+            {
+                flowLayoutPanelMain.Controls.Remove(ctrl);
+                ctrl.Dispose();                
+            }
         }
     }
 }

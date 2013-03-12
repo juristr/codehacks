@@ -35,9 +35,11 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.diagnosticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openUndoRedoStackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.applicationMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +59,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem,
+            this.toolStripSeparator1,
             this.exportToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -65,7 +69,7 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
@@ -101,14 +105,6 @@
             this.pluginsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.pluginsToolStripMenuItem.Text = "Plugins";
             // 
-            // flowLayoutPanelMain
-            // 
-            this.flowLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelMain.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
-            this.flowLayoutPanelMain.Size = new System.Drawing.Size(741, 386);
-            this.flowLayoutPanelMain.TabIndex = 1;
-            // 
             // diagnosticsToolStripMenuItem
             // 
             this.diagnosticsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -123,6 +119,26 @@
             this.openUndoRedoStackToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.openUndoRedoStackToolStripMenuItem.Text = "Open Undo/Redo Stack";
             this.openUndoRedoStackToolStripMenuItem.Click += new System.EventHandler(this.openUndoRedoStackToolStripMenuItem_Click);
+            // 
+            // flowLayoutPanelMain
+            // 
+            this.flowLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelMain.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
+            this.flowLayoutPanelMain.Size = new System.Drawing.Size(741, 386);
+            this.flowLayoutPanelMain.TabIndex = 1;
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // Form1
             // 
@@ -153,6 +169,8 @@
         private System.Windows.Forms.ToolStripMenuItem redoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem diagnosticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openUndoRedoStackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

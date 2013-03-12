@@ -13,7 +13,7 @@ using WinFormsClientApplication.UndoRedo.Commands;
 namespace WinFormsClientApplication.UndoRedo
 {
     [Export(typeof(UndoRedoView))]
-    partial class UndoRedoView : UserControl
+    public partial class UndoRedoView : UserControl
     {
         private IList<string> SourceItems = new BindingList<string>
                 {

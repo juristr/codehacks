@@ -14,8 +14,11 @@ namespace WinFormsClientApplication.Export
     [Export(typeof(ToolStripMenuItem))]
     public class OpenValueControlMenu : ToolStripMenuItem
     {
-        [Import(typeof(ValueControl), RequiredCreationPolicy=CreationPolicy.NonShared)]
-        public Lazy<UserControl> View { get; set; }
+
+        private ValueControl Control { get; set; }
+
+        [Import]
+        public ExportFactory<ValueControl> View { get; set; }
 
         [Import]
         public IWindowHost WindowHost { get; set; }
@@ -28,7 +31,13 @@ namespace WinFormsClientApplication.Export
 
         protected override void OnClick(EventArgs e)
         {
-            WindowHost.LoadWindow(View.Value);
+            if (Control == null || Control.IsDisposed)
+            {
+                var viewExportLifetimeCtx = View.CreateExport();
+                Control = viewExportLifetimeCtx.Value;
+            }
+
+            WindowHost.LoadWindow(Control);
         }
     }
 }

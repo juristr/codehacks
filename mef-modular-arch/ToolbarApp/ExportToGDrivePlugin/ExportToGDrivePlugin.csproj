@@ -61,6 +61,10 @@
       <Project>{1184ea25-06f0-4317-b65e-8298a06040c2}</Project>
       <Name>Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WinFormsClientApplication\WinFormsClientApplication.csproj">
+      <Project>{b0c2d14b-ae2f-4719-8de6-c6198c4fb47a}</Project>
+      <Name>WinFormsClientApplication</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
