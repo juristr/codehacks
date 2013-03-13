@@ -61,13 +61,9 @@
     <Compile Include="Diagnostics\UndoRedoStack.Designer.cs">
       <DependentUpon>UndoRedoStack.cs</DependentUpon>
     </Compile>
-    <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
     <Compile Include="Diagnostics\MefDebugger.cs" />
-    <Compile Include="Menu\IMenu.cs" />
-    <Compile Include="Menu\IMenuItem.cs" />
-    <Compile Include="Menu\IMenuService.cs" />
     <Compile Include="IToolWindow.cs" />
     <Compile Include="OperationExecutedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
