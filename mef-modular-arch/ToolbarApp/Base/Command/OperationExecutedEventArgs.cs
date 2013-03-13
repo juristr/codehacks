@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Base.Command;
 
-namespace Base
+namespace Base.Command
 {
     public class OperationExecutionEventArgs : EventArgs
     {
