@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,6 @@ namespace Base.Command
         void Undo();
 
         event EventHandler<OperationExecutionEventArgs> OperationExecuted;
-
 
         void CleanUp(IEnumerable<ICommand> ExecutedCommands);
     }

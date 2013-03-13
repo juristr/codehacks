@@ -49,23 +49,7 @@ namespace Base.UnitTests.Command
                 Assert.AreEqual(item, resultItem, "the item should be the same");
             }
 
-            [TestMethod]
-            public void ShouldFireACorrespondingAddEvent()
-            {
-                //arrange
-                var wasCalled = false;
-                stack.UndoRedoStackOperationExecuted += (object s, UndoRedoStackOperationEventArgs<TestObject> e) => 
-                                            {
-                                                Assert.AreEqual(UndoStackOperation.Added, e.Action);
-                                                wasCalled = true;
-                                            };
-
-                //act
-                stack.AddItem(new TestObject());
-
-                //assert
-                Assert.AreEqual(true, wasCalled, "The event should have been fired");
-            }
+           
         }
 
         [TestClass]
@@ -128,26 +112,6 @@ namespace Base.UnitTests.Command
 
                 //assert
                 Assert.IsNull(item, "the returned item should be null as there is nothing to be redone");
-            }
-
-            [TestMethod]
-            public void ShouldFireACorrespondingUndoEvent()
-            {
-                //arrange
-                var wasCalled = false;
-                stack.UndoRedoStackOperationExecuted += (object s, UndoRedoStackOperationEventArgs<TestObject> e) =>
-                                        {
-                                            if(e.Action == UndoStackOperation.Undone)
-                                                wasCalled = true;
-                                        };
-
-                PrepareStackToPerformUndo();
-
-                //act
-                stack.Undo();
-
-                //assert
-                Assert.AreEqual(true, wasCalled, "The event should have been fired");
             }
         }
 
@@ -214,24 +178,6 @@ namespace Base.UnitTests.Command
                 Assert.IsNull(item, "the returned item should be null as there is nothing to be redone");
             }
 
-            [TestMethod]
-            public void ShouldFireACorrespondingRedoEvent()
-            {
-                //arrange
-                var wasCalled = false;
-                stack.UndoRedoStackOperationExecuted += (object s, UndoRedoStackOperationEventArgs<TestObject> e) =>
-                                                        {
-                                                            if(e.Action == UndoStackOperation.Redone)
-                                                                wasCalled = true;
-                                                        };
-                PrepareStackWithItemToPerformRedo();
-
-                //act
-                stack.Redo();
-
-                //assert
-                Assert.AreEqual(true, wasCalled, "The event should have been fired");
-            }    
         }
 
         [TestClass]

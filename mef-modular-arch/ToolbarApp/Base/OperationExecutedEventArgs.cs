@@ -2,18 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Base.Command;
 
 namespace Base
 {
     public class OperationExecutionEventArgs : EventArgs
     {
-        public OperationExecutionEventArgs(bool canUndo, bool canRedo)
-        {
-            CanUndo = canUndo;
-            CanRedo = canRedo;
-        }
+        public ICommand CurrentItem { get; private set; }
+        public bool HasUndoItems { get; private set; }
+        public bool HasRedoItems { get; private set; }
+        public ExecutionOperation Action { get; private set; }
 
-        public bool CanUndo { get; private set; }
-        public bool CanRedo { get; private set; }
+        public OperationExecutionEventArgs(ICommand item, ExecutionOperation action, bool hasUndoItems, bool hasRedoItems)
+            : base()
+        {
+            CurrentItem = item;
+            Action = action;
+            HasUndoItems = hasUndoItems;
+            HasRedoItems = hasRedoItems;
+        }
+    }
+
+    public enum ExecutionOperation
+    {
+        Execute,
+        Undo,
+        Redo,
+        Cleanup
     }
 }

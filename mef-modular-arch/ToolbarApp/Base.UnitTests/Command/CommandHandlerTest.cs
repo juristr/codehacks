@@ -11,7 +11,6 @@ namespace Base.UnitTests.Command
         public object Context { get; set; }
         public bool HasUndone { get; set; }
         public bool HasExecuted { get; set; }
-        private bool _ThrowExceptionOnExecuting = false;
         public bool ThrowExceptionOnExecuting { get; set; }
 
         public void Execute()
@@ -116,6 +115,24 @@ namespace Base.UnitTests.Command
                 handler.Execute(myCommand);
             }
 
+            [TestMethod]
+            public void ShouldFireACorrespondingAddEvent()
+            {
+                //arrange
+                var wasCalled = false;
+                handler.OperationExecuted += (object s, OperationExecutionEventArgs e) =>
+                                            {
+                                                Assert.AreEqual(ExecutionOperation.Execute, e.Action);
+                                                wasCalled = true;
+                                            };
+
+                //act
+                handler.Execute(new MyTestCommand());
+
+                //assert
+                Assert.AreEqual(true, wasCalled, "The event should have been fired");
+            }
+
         }
 
         [TestClass]
@@ -159,6 +176,25 @@ namespace Base.UnitTests.Command
                 //act
                 handler.Undo();
             }
+
+            [TestMethod]
+            public void ShouldFireACorrespondingUndoEvent()
+            {
+                //arrange
+                var wasCalled = false;
+                handler.OperationExecuted += (object s, OperationExecutionEventArgs e) =>
+                                        {
+                                            if (e.Action == ExecutionOperation.Undo)
+                                                wasCalled = true;
+                                        };
+
+                //act
+                handler.Undo();
+
+                //assert
+                Assert.AreEqual(true, wasCalled, "The event should have been fired");
+            }
+        
         }
 
         [TestClass]
@@ -207,6 +243,24 @@ namespace Base.UnitTests.Command
                 //act
                 handler.Redo();
             }
+
+            [TestMethod]
+            public void ShouldFireACorrespondingRedoEvent()
+            {
+                //arrange
+                var wasCalled = false;
+                handler.OperationExecuted += (object s, OperationExecutionEventArgs e) =>
+                                        {
+                                            if (e.Action == ExecutionOperation.Redo)
+                                                wasCalled = true;
+                                        };
+
+                //act
+                handler.Redo();
+
+                //assert
+                Assert.AreEqual(true, wasCalled, "The event should have been fired");
+            }    
 
         }
     }

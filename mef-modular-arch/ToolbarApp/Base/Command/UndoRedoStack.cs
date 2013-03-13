@@ -40,7 +40,6 @@ namespace Base.Command
             }
 
             UndoStack.Add(item);
-            RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Added);
         }
 
         public TItem Undo()
@@ -50,7 +49,6 @@ namespace Base.Command
             {
                 item = UndoStack.Pop();
                 RedoStack.Add(item);
-                RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Undone);
             }
 
             return item;
@@ -63,7 +61,6 @@ namespace Base.Command
             {
                 item = RedoStack.Pop();
                 UndoStack.Add(item);
-                RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Redone);
             }
 
             return item;
@@ -96,44 +93,7 @@ namespace Base.Command
                 UndoStack.Remove(cmd);
                 RedoStack.Remove(cmd);
             }
-
-            RaiseUndoRedoStackOperationExecuted(default(TItem), UndoStackOperation.Cleanup);
         }
-
-        public event EventHandler<UndoRedoStackOperationEventArgs<TItem>> UndoRedoStackOperationExecuted;
-        protected void RaiseUndoRedoStackOperationExecuted(TItem item, UndoStackOperation operation)
-        {
-            if (UndoRedoStackOperationExecuted != null)
-            {
-                UndoRedoStackOperationExecuted(this, new UndoRedoStackOperationEventArgs<TItem>(item, operation, CanUndo, CanRedo));
-            }
-        }
-
-    }
-
-    public class UndoRedoStackOperationEventArgs<TItem> : EventArgs
-    {
-        public TItem CurrentItem { get; private set; }
-        public bool HasUndoItems { get; private set; }
-        public bool HasRedoItems { get; private set; }
-        public UndoStackOperation Action { get; private set; }
-
-        public UndoRedoStackOperationEventArgs(TItem item, UndoStackOperation action, bool hasUndoItems, bool hasRedoItems)
-            : base()
-        {
-            CurrentItem = item;
-            Action = action;
-            HasUndoItems = hasUndoItems;
-            HasRedoItems = hasRedoItems;
-        }
-    }
-
-    public enum UndoStackOperation
-    {
-        Added,
-        Undone,
-        Redone,
-        Cleanup
     }
 
     static class ListStackExtension

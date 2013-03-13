@@ -25,7 +25,5 @@ namespace Base.Command
 
         void CleanUp(IEnumerable<TItem> ExecutedCommands);
 
-        event EventHandler<UndoRedoStackOperationEventArgs<TItem>> UndoRedoStackOperationExecuted;
-
     }
 }

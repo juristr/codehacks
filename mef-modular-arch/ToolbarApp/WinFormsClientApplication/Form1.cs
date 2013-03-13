@@ -41,8 +41,8 @@ namespace WinFormsClientApplication
 
             CommandHandler.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
                     {
-                        undoToolStripMenuItem.Enabled = ev.CanUndo;
-                        redoToolStripMenuItem.Enabled = ev.CanRedo;
+                        undoToolStripMenuItem.Enabled = ev.HasUndoItems;
+                        redoToolStripMenuItem.Enabled = ev.HasRedoItems;
                     };
         }
 
