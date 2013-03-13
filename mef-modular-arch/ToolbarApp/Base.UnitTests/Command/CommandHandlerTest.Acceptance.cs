@@ -80,6 +80,30 @@ namespace Base.UnitTests.Command
             Assert.IsTrue(hasFailed, "The 2nd undo operation should have failed");
 
         }
+
+        [TestMethod]
+        public void ShouldUndoAndRedoMultipleLevels()
+        {
+            //arrange
+            var valueObj = new ValueObject();
+
+            for (int i = 0; i < 5; i++)
+            {
+                handler.Execute(new AddOneCommand(valueObj));
+            }
+            Assert.AreEqual(5, valueObj.Number);
+
+            //exec
+            handler.Undo(3);
+
+            //assert
+            Assert.AreEqual(2, valueObj.Number);
+
+            //redo
+            handler.Redo(2);
+            Assert.AreEqual(4, valueObj.Number);
+        }
+
     }
 
     //nothing more than an object holding a number

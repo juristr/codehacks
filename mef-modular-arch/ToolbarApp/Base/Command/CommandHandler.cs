@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Base.Command
 {
-    
+
     [Export(typeof(ICommandHandler))]
     class CommandHandler : ICommandHandler
     {
@@ -34,28 +34,34 @@ namespace Base.Command
             }
         }
 
-        public void Redo()
+        public void Redo(int numberOfRedos = 1)
         {
-            var command = stack.Redo();
-            if (command == null)
+            for (int i = 0; i < numberOfRedos; i++)
             {
-                throw new ApplicationException();
-            }
+                var command = stack.Redo();
+                if (command == null)
+                {
+                    throw new ApplicationException();
+                }
 
-            command.Execute();
-            RaiseOperationExecuted(command, ExecutionOperation.Redo);
+                command.Execute();
+                RaiseOperationExecuted(command, ExecutionOperation.Redo);
+            }
         }
 
-        public void Undo()
+        public void Undo(int numberOfUndos = 1)
         {
-            var command = stack.Undo();
-            if (command == null)
+            for (int i = 0; i < numberOfUndos; i++)
             {
-                throw new ApplicationException();
-            }
+                var command = stack.Undo();
+                if (command == null)
+                {
+                    throw new ApplicationException();
+                }
 
-            command.Undo();
-            RaiseOperationExecuted(command, ExecutionOperation.Undo);
+                command.Undo();
+                RaiseOperationExecuted(command, ExecutionOperation.Undo);
+            }
         }
 
         public event EventHandler<OperationExecutionEventArgs> OperationExecuted;

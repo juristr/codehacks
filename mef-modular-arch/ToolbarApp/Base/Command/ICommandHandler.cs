@@ -12,8 +12,8 @@ namespace Base.Command
     {
 
         void Execute(ICommand command);
-        void Redo();
-        void Undo();
+        void Redo(int numberOfRedos = 1);
+        void Undo(int numberOfUndoes = 1);
 
         event EventHandler<OperationExecutionEventArgs> OperationExecuted;
 
