@@ -6,12 +6,16 @@ using System.Text;
 
 namespace Base.Command
 {
-    interface IUndoRedoStack<TItem>
+    public interface IPublicUndoRedoStack<TItem>
+    {
+        TItem Undo();
+        TItem Redo();
+    }
+
+    interface IUndoRedoStack<TItem> : IPublicUndoRedoStack<TItem>
     {
 
         void AddItem(TItem item);
-        TItem Undo();
-        TItem Redo();
 
         ReadOnlyCollection<TItem> UndoItems();
         ReadOnlyCollection<TItem> RedoItems();
@@ -19,7 +23,9 @@ namespace Base.Command
         bool CanUndo { get; }
         bool CanRedo { get; }
 
-
         void CleanUp(IEnumerable<TItem> ExecutedCommands);
+
+        event EventHandler<UndoRedoStackOperationEventArgs<TItem>> UndoRedoStackOperationExecuted;
+
     }
 }

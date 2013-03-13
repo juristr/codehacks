@@ -58,16 +58,6 @@ namespace Base.Command
             RaiseOperationExecuted();
         }
 
-        public bool CanUndo()
-        {
-            return stack.CanUndo;
-        }
-
-        public bool CanRedo()
-        {
-            return stack.CanRedo;
-        }
-
         public event EventHandler<OperationExecutionEventArgs> OperationExecuted;
         protected void RaiseOperationExecuted()
         {

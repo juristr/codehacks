@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Base.Command
 {
+    //[Export(typeof(IPublicUndoRedoStack<ICommand>))]
     [Export(typeof(IUndoRedoStack<ICommand>))]
     class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {
@@ -17,16 +18,20 @@ namespace Base.Command
             set { _MaxStackSize = value; }
         }
 
-        private List<TItem> UndoStack { get; set; }
-        //private Stack<TItem> UndoStack { get; set; }
-        private List<TItem> RedoStack { get; set; }
+        private readonly List<TItem> UndoStack;
+        private readonly ReadOnlyCollection<TItem> ReadOnlyUndoStack;
+        private readonly List<TItem> RedoStack;
+        private readonly ReadOnlyCollection<TItem> ReadOnlyRedoStack;
 
         public UndoRedoStack()
         {
             UndoStack = new List<TItem>();
             RedoStack = new List<TItem>();
+
+            ReadOnlyUndoStack = new ReadOnlyCollection<TItem>(UndoStack);
+            ReadOnlyRedoStack = new ReadOnlyCollection<TItem>(RedoStack);
         }
-        
+
         public void AddItem(TItem item)
         {
             if (UndoStack.Count() >= MaxStackSize)
@@ -35,6 +40,7 @@ namespace Base.Command
             }
 
             UndoStack.Add(item);
+            RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Added);
         }
 
         public TItem Undo()
@@ -44,6 +50,7 @@ namespace Base.Command
             {
                 item = UndoStack.Pop();
                 RedoStack.Add(item);
+                RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Undone);
             }
 
             return item;
@@ -56,6 +63,7 @@ namespace Base.Command
             {
                 item = RedoStack.Pop();
                 UndoStack.Add(item);
+                RaiseUndoRedoStackOperationExecuted(item, UndoStackOperation.Redone);
             }
 
             return item;
@@ -63,12 +71,12 @@ namespace Base.Command
 
         public ReadOnlyCollection<TItem> UndoItems()
         {
-            return UndoStack.AsReadOnly();
+            return ReadOnlyUndoStack;
         }
 
         public ReadOnlyCollection<TItem> RedoItems()
         {
-            return RedoStack.AsReadOnly();
+            return ReadOnlyRedoStack;
         }
 
         public bool CanUndo
@@ -81,7 +89,6 @@ namespace Base.Command
             get { return RedoStack.Count > 0; }
         }
 
-
         public void CleanUp(IEnumerable<TItem> ExecutedCommands)
         {
             foreach (var cmd in ExecutedCommands)
@@ -89,12 +96,49 @@ namespace Base.Command
                 UndoStack.Remove(cmd);
                 RedoStack.Remove(cmd);
             }
+
+            RaiseUndoRedoStackOperationExecuted(default(TItem), UndoStackOperation.Cleanup);
         }
+
+        public event EventHandler<UndoRedoStackOperationEventArgs<TItem>> UndoRedoStackOperationExecuted;
+        protected void RaiseUndoRedoStackOperationExecuted(TItem item, UndoStackOperation operation)
+        {
+            if (UndoRedoStackOperationExecuted != null)
+            {
+                UndoRedoStackOperationExecuted(this, new UndoRedoStackOperationEventArgs<TItem>(item, operation, CanUndo, CanRedo));
+            }
+        }
+
+    }
+
+    public class UndoRedoStackOperationEventArgs<TItem> : EventArgs
+    {
+        public TItem CurrentItem { get; private set; }
+        public bool HasUndoItems { get; private set; }
+        public bool HasRedoItems { get; private set; }
+        public UndoStackOperation Action { get; private set; }
+
+        public UndoRedoStackOperationEventArgs(TItem item, UndoStackOperation action, bool hasUndoItems, bool hasRedoItems)
+            : base()
+        {
+            CurrentItem = item;
+            Action = action;
+            HasUndoItems = hasUndoItems;
+            HasRedoItems = hasRedoItems;
+        }
+    }
+
+    public enum UndoStackOperation
+    {
+        Added,
+        Undone,
+        Redone,
+        Cleanup
     }
 
     static class ListStackExtension
     {
-        public static TItem Pop<TItem>(this List<TItem> list)
+        public static TItem Pop<TItem>(this IList<TItem> list)
         {
             var lastElement = list.Last();
             list.Remove(lastElement);
