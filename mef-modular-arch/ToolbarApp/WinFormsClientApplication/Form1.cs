@@ -2,6 +2,7 @@
 using Base.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Data;
@@ -24,8 +25,11 @@ namespace WinFormsClientApplication
         [ImportMany]
         public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }
 
-        [Import(typeof(IPublicUndoRedoStack<ICommand>))]
-        public IPublicUndoRedoStack<ICommand> CommandStack { get; set; }
+        //[ImportMany(typeof(IUndoRedoStack<ICommand>))]
+        //public IList<IUndoRedoStack<ICommand>> CommandStack { get; set; }
+
+        [Import(typeof(IUndoRedoStack<ICommand>))]
+        public IUndoRedoStack<ICommand> CommandStack { get; set; }
 
         [Import]
         public Base.Diagnostics.UndoRedoStack UndoRedoStackDiagnosticsWindow { get; set; }
@@ -39,12 +43,13 @@ namespace WinFormsClientApplication
         {
             base.OnLoad(e);
 
-            //TODO
-            //CommandStack.OperationExecuted += (object s, OperationExecutionEventArgs ev) =>
-            //        {
-            //            undoToolStripMenuItem.Enabled = ev.CanUndo;
-            //            redoToolStripMenuItem.Enabled = ev.CanRedo;
-            //        };
+            CommandStack.UndoRedoStackOperationExecuted += CommandStack_UndoRedoStackOperationExecuted;
+        }
+
+        void CommandStack_UndoRedoStackOperationExecuted(object sender, UndoRedoStackOperationEventArgs<ICommand> e)
+        {
+            undoToolStripMenuItem.Enabled = e.HasUndoItems;
+            redoToolStripMenuItem.Enabled = e.HasRedoItems;
         }
 
         public void OnImportsSatisfied()

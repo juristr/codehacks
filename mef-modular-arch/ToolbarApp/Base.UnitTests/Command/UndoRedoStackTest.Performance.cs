@@ -25,9 +25,10 @@ namespace Base.UnitTests.Command
 
         //just to have get alerted about potential performance impacts in the implementation
         [TestMethod]
-        public void ShouldProcess100000ItemsUnder15Ms()
+        public void ShouldProcess100000ItemsFastly()
         {
             //arrange
+            var expected = 15;
             var stopw = new Stopwatch();
             stopw.Start();
 
@@ -40,7 +41,7 @@ namespace Base.UnitTests.Command
             //assert
             stopw.Stop();
 
-            Assert.IsTrue(stopw.ElapsedMilliseconds < 15, "Should be faster than 100 ms (actual:" + stopw.ElapsedMilliseconds + ")");
+            Assert.IsTrue(stopw.ElapsedMilliseconds < expected, "Should be faster than " + expected + " (actual:" + stopw.ElapsedMilliseconds + ")");
         }
 
     }

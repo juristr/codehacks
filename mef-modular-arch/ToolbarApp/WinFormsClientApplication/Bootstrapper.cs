@@ -63,6 +63,8 @@ namespace WinFormsClientApplication
             {
                 Console.WriteLine("#### COMPOSITION EXCEPTION:");
                 Console.WriteLine(ex.Message);
+
+                throw;
             }
             
             Application.Run(Shell);

@@ -30,7 +30,6 @@ namespace Base.Command
                 command.Execute();
                 stack.AddItem(command);
                 ExecutedCommands.Add(command);
-                RaiseOperationExecuted();
             }
             catch
             {
@@ -47,7 +46,6 @@ namespace Base.Command
             }
 
             command.Execute();
-            RaiseOperationExecuted();
         }
 
         public void Undo()
@@ -59,32 +57,11 @@ namespace Base.Command
             }
 
             command.Undo();
-            RaiseOperationExecuted();
-        }
-
-        public bool CanUndo()
-        {
-            return stack.CanUndo;
-        }
-
-        public bool CanRedo()
-        {
-            return stack.CanRedo;
-        }
-
-        public event EventHandler<OperationExecutionEventArgs> OperationExecuted;
-        protected void RaiseOperationExecuted()
-        {
-            if (OperationExecuted != null)
-            {
-                OperationExecuted(this, new OperationExecutionEventArgs(stack.CanUndo, stack.CanRedo));
-            }
         }
 
         public void CleanUp(IEnumerable<ICommand> ExecutedCommands)
         {
             stack.CleanUp(ExecutedCommands);
-            RaiseOperationExecuted();
         }
 
         public void Dispose()

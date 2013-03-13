@@ -1,6 +1,7 @@
 ﻿using Base.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Data;
@@ -22,7 +23,7 @@ namespace Base.Diagnostics
         IUndoRedoStack<ICommand> Stack { get; set; }
 
         [Import]
-        ICommandHandler CommandHander { get; set; }
+        IUndoRedoStack<ICommand> CommandHander { get; set; }
 
         public UndoRedoStack()
         {
@@ -37,11 +38,27 @@ namespace Base.Diagnostics
             bindingSourceUndoStack.DataSource = undoStack;
             bindingSourceRedoStack.DataSource = redoStack;
 
-            CommandHander.OperationExecuted += (s, ev) =>
-                                {
-                                    this.undoStack.ResetBindings();
-                                    this.redoStack.ResetBindings();
-                                };
+            CommandHander.UndoRedoStackOperationExecuted += (s, ev) =>
+                        {
+                            this.undoStack.ResetBindings();
+                            this.redoStack.ResetBindings();
+                        };
+
+            //Stack.ItemAdded += (s, ev) => { RefreshBindings(); };
+            //Stack.ItemUndone += (s, ev) => { RefreshBindings(); };
+            //Stack.ItemRedone += (s, ev) => { RefreshBindings(); };
+
+            //CommandHander.OperationExecuted += (s, ev) =>
+            //                    {
+            //                        this.undoStack.ResetBindings();
+            //                        this.redoStack.ResetBindings();
+            //                    };
+        }
+
+        private void RefreshBindings()
+        {
+            this.undoStack.ResetBindings();
+            this.redoStack.ResetBindings();
         }
     }
 }

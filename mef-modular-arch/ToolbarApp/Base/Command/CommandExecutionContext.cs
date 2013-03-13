@@ -7,37 +7,37 @@ using System.Text;
 
 namespace Base.Command
 {
-    [PartCreationPolicy(CreationPolicy.NonShared)]
-    [Export(typeof(ICommandExecutionContext))]
-    class CommandExecutionContext : ICommandExecutionContext
-    {
-        private ICommandHandler CommandHandler { get; set; }
-        private IList<ICommand> ExecutedCommands { get; set; }
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
+    //[Export(typeof(ICommandExecutionContext))]
+    //class CommandExecutionContext : ICommandExecutionContext
+    //{
+    //    private ICommandHandler CommandHandler { get; set; }
+    //    private IList<ICommand> ExecutedCommands { get; set; }
 
-        [ImportingConstructor]
-        public CommandExecutionContext(ICommandHandler commandHandler)
-        {
-            this.CommandHandler = commandHandler;
-            ExecutedCommands = new List<ICommand>();
-        }
+    //    [ImportingConstructor]
+    //    public CommandExecutionContext(ICommandHandler commandHandler)
+    //    {
+    //        this.CommandHandler = commandHandler;
+    //        ExecutedCommands = new List<ICommand>();
+    //    }
 
-        public void Execute(ICommand command)
-        {
-            try
-            {
-                CommandHandler.Execute(command);
-                ExecutedCommands.Add(command);
-            }
-            catch (Exception e)
-            {
-                //log??
-                Console.Error.WriteLine("CommandExecutionContext: " + e.Message);
-            }
-        }
+    //    public void Execute(ICommand command)
+    //    {
+    //        try
+    //        {
+    //            CommandHandler.Execute(command);
+    //            ExecutedCommands.Add(command);
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            //log??
+    //            Console.Error.WriteLine("CommandExecutionContext: " + e.Message);
+    //        }
+    //    }
 
-        public void Dispose()
-        {
-            CommandHandler.CleanUp(ExecutedCommands);
-        }
-    }
+    //    public void Dispose()
+    //    {
+    //        CommandHandler.CleanUp(ExecutedCommands);
+    //    }
+    //}
 }

@@ -29,36 +29,40 @@ namespace Base.UnitTests.Command
         [TestMethod]
         public void ShouldCorrectlyExecuteTheCommands()
         {
-            //arrange
-            var obj = new ValueObject() { Number = 1 };
-            var context = new CommandExecutionContext(handler);
+            Assert.Inconclusive("Delete?");
 
-            //act
-            context.Execute(new AddOneCommand(obj));
+            ////arrange
+            //var obj = new ValueObject() { Number = 1 };
+            //var context = new CommandExecutionContext(handler);
 
-            //assert
-            Assert.AreEqual(2, obj.Number);
+            ////act
+            //context.Execute(new AddOneCommand(obj));
+
+            ////assert
+            //Assert.AreEqual(2, obj.Number);
         }
 
 
         [TestMethod]
         public void ShouldProperlyRemoveCommandsBoundToAGivenExecutionContext()
         {
-            //arrange
-            var cmd1 = new AddOneCommand(new ValueObject() { Number = 1 });
-            var cmd2 = new AddOneCommand(new ValueObject() { Number = 1 });
-            var context1 = new CommandExecutionContext(handler);
-            var context2 = new CommandExecutionContext(handler);
+            Assert.Inconclusive("Delete?");
 
-            //act
-            context1.Execute(cmd1);
-            context2.Execute(cmd2);
+            ////arrange
+            //var cmd1 = new AddOneCommand(new ValueObject() { Number = 1 });
+            //var cmd2 = new AddOneCommand(new ValueObject() { Number = 1 });
+            //var context1 = new CommandExecutionContext(handler);
+            //var context2 = new CommandExecutionContext(handler);
 
-            //assert
-            Assert.AreEqual(2, stack.UndoItems().Count(), "there should be 2 undo entries");
-            context1.Dispose();
-            Assert.AreEqual(1, stack.UndoItems().Count(), "there should be 1 undo entry left");
-            Assert.AreEqual(cmd2, stack.UndoItems().ElementAt(0), "should be the correct command obj");
+            ////act
+            //context1.Execute(cmd1);
+            //context2.Execute(cmd2);
+
+            ////assert
+            //Assert.AreEqual(2, stack.UndoItems().Count(), "there should be 2 undo entries");
+            //context1.Dispose();
+            //Assert.AreEqual(1, stack.UndoItems().Count(), "there should be 1 undo entry left");
+            //Assert.AreEqual(cmd2, stack.UndoItems().ElementAt(0), "should be the correct command obj");
         }
 
     }

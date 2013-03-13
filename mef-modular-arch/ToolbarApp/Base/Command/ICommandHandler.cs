@@ -9,17 +9,8 @@ namespace Base.Command
 
     public interface ICommandHandler : IDisposable
     {
-
         void Execute(ICommand command);
         void Redo();
         void Undo();
-
-        bool CanUndo();
-        bool CanRedo();
-
-        event EventHandler<OperationExecutionEventArgs> OperationExecuted;
-
-
-        void CleanUp(IEnumerable<ICommand> ExecutedCommands);
     }
 }

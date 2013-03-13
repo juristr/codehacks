@@ -12,18 +12,20 @@ namespace Base.Command
         TItem Redo();
     }
 
-    interface IUndoRedoStack<TItem> : IPublicUndoRedoStack<TItem>
+    public interface IUndoRedoStack<TItem> : IPublicUndoRedoStack<TItem>
     {
 
         void AddItem(TItem item);
-        
+
         ReadOnlyCollection<TItem> UndoItems();
         ReadOnlyCollection<TItem> RedoItems();
 
         bool CanUndo { get; }
         bool CanRedo { get; }
 
-
         void CleanUp(IEnumerable<TItem> ExecutedCommands);
+
+        event EventHandler<UndoRedoStackOperationEventArgs<TItem>> UndoRedoStackOperationExecuted;
+
     }
 }
