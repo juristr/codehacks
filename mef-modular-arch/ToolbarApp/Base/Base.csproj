@@ -35,6 +35,9 @@
     <Reference Include="MefContrib">
       <HintPath>..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Composite">
+      <HintPath>..\..\..\..\..\..\..\Temp\downloads\CompositeWinforms\CompositeExtensionsForWindowsForms\Shared\dependencies\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -61,6 +64,7 @@
     <Compile Include="Diagnostics\UndoRedoStack.Designer.cs">
       <DependentUpon>UndoRedoStack.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\TestEvent.cs" />
     <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
@@ -79,6 +83,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\privatehacks\pluginarchitecture\CompositeExtensionsForWindowsForms\CompositeExtensions\CompositeExtensions\CompositeExtensions.csproj">
+      <Project>{d1589da3-76bf-4acf-8e88-87d1c8fd36cc}</Project>
+      <Name>CompositeExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop_4.csproj">
       <Project>{23feb1ca-f29c-480f-a79e-e4b359621352}</Project>
       <Name>ComponentModel.Composition.Initialization.Desktop_4</Name>

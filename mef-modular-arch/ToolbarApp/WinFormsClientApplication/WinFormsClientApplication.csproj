@@ -40,6 +40,10 @@
     <Reference Include="MefContrib">
       <HintPath>..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Composite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Temp\downloads\CompositeWinforms\CompositeExtensionsForWindowsForms\Shared\dependencies\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -118,6 +122,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\privatehacks\pluginarchitecture\CompositeExtensionsForWindowsForms\CompositeExtensions\CompositeExtensions\CompositeExtensions.csproj">
+      <Project>{d1589da3-76bf-4acf-8e88-87d1c8fd36cc}</Project>
+      <Name>CompositeExtensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Base\Base.csproj">
       <Project>{1184ea25-06f0-4317-b65e-8298a06040c2}</Project>
       <Name>Base</Name>

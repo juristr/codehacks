@@ -1,6 +1,8 @@
 ﻿using Base;
 using Base.Command;
+using Base.Events;
 using ExportToGDrivePlugin.Service;
+using Microsoft.Practices.Composite.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -18,9 +20,11 @@ namespace ExportToGDrivePlugin
         private IGoogleAuthService AuthService { get; set; }
 
         [ImportingConstructor]
-        public ExportToGDriveCommand(IGoogleAuthService authService)
+        public ExportToGDriveCommand(IGoogleAuthService authService, IEventAggregator eventAggregator)
         {
             AuthService = authService;
+
+            eventAggregator.GetEvent<TestEvent>().Subscribe((msg) => MessageBox.Show(msg));
         }
 
         public void Execute()

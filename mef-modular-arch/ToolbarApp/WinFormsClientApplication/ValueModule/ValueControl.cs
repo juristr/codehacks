@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using Base;
 using System.ComponentModel.Composition;
 using Base.Command;
+using Microsoft.Practices.Composite.Events;
+using Base.Events;
 
 namespace WinFormsClientApplication.ValueModule
 {
@@ -21,6 +23,9 @@ namespace WinFormsClientApplication.ValueModule
 
         [Import]
         public ICommandExecutionContext CommandHandler { get; set; }
+
+        [Import]
+        public IEventAggregator EventAggregator { get; set; }
 
         public ValueControl()
         {
@@ -62,6 +67,8 @@ namespace WinFormsClientApplication.ValueModule
                             Values.Remove(text);
                         }));
                 textBoxValue.Text = "";
+
+                EventAggregator.GetEvent<TestEvent>().Publish("hi there, I come from the main form");
             }
 
             textBoxValue.Focus();

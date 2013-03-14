@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentModel.Composition.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentModel.Composition.Initialization.Desktop.Tests_4", "Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop.Tests\ComponentModel.Composition.Initialization.Desktop.Tests_4.csproj", "{69495805-B2FC-4884-BF46-1FD0DB2664CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositeExtensions", "..\..\..\..\privatehacks\pluginarchitecture\CompositeExtensionsForWindowsForms\CompositeExtensions\CompositeExtensions\CompositeExtensions.csproj", "{D1589DA3-76BF-4ACF-8E88-87D1C8FD36CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{69495805-B2FC-4884-BF46-1FD0DB2664CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69495805-B2FC-4884-BF46-1FD0DB2664CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69495805-B2FC-4884-BF46-1FD0DB2664CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1589DA3-76BF-4ACF-8E88-87D1C8FD36CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1589DA3-76BF-4ACF-8E88-87D1C8FD36CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1589DA3-76BF-4ACF-8E88-87D1C8FD36CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1589DA3-76BF-4ACF-8E88-87D1C8FD36CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
