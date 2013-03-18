@@ -7,8 +7,8 @@ using System.Text;
 
 namespace Base.Command
 {
-    //[Export(typeof(IPublicUndoRedoStack<ICommand>))]
-    [Export(typeof(IUndoRedoStack<ICommand>))]
+
+    [Export(typeof(IUndoRedoStack<>))]
     class UndoRedoStack<TItem> : IUndoRedoStack<TItem>
     {
         public int _MaxStackSize = 20;

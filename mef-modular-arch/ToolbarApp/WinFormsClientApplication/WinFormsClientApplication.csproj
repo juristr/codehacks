@@ -89,8 +89,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IRepository.cs" />
+    <Compile Include="MyGenericContractRegistry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="UndoRedo\Commands\MoveCommand.cs" />
     <Compile Include="UndoRedo\OpenUndoRedoMenu.cs">
       <SubType>Component</SubType>
@@ -149,6 +152,10 @@
     <ProjectReference Include="..\Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop_4.csproj">
       <Project>{23feb1ca-f29c-480f-a79e-e4b359621352}</Project>
       <Name>ComponentModel.Composition.Initialization.Desktop_4</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFirstMefPlugin\MyFirstMefPlugin.csproj">
+      <Project>{ce6c4ea8-bfca-40bc-bbd6-dac433a22b11}</Project>
+      <Name>MyFirstMefPlugin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,13 +8,13 @@ using System.Text;
 
 namespace Base
 {
-    [Export(typeof(IGenericContractRegistry))]
-    public class GenericContractRegistry : GenericContractRegistryBase
-    {
+    //[Export(typeof(IGenericContractRegistry))]
+    //public class GenericContractRegistry : GenericContractRegistryBase
+    //{
 
-        protected override void Initialize()
-        {
-            Register(typeof(IUndoRedoStack<>), typeof(UndoRedoStack<>));
-        }
-    }
+    //    protected override void Initialize()
+    //    {
+    //        Register(typeof(IUndoRedoStack<>), typeof(UndoRedoStack<>));
+    //    }
+    //}
 }

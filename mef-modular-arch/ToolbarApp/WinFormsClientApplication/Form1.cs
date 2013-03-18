@@ -14,12 +14,15 @@ namespace WinFormsClientApplication
 {
 
     [Export(typeof(IWindowHost))]
-    [Export(typeof(Form))]
+    [Export]
     public partial class Form1 : Form, IPartImportsSatisfiedNotification, IWindowHost
     {
 
         [ImportMany("Export", typeof(ToolStripMenuItem))]
         public IEnumerable<ToolStripMenuItem> ExportMenuItems { get; set; }
+
+        //[Import]
+        //public IRepository<ICommand> CmdRepo { get; set; }
 
         [ImportMany]
         public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }

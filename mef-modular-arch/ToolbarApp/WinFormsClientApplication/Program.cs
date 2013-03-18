@@ -17,8 +17,9 @@ namespace WinFormsClientApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Initialize();
+            Bootstrapper bootstrapper = new Bootstrapper();
+            bootstrapper.Run();
+            Application.Run(bootstrapper.Shell);
         }
     }
 }

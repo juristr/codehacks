@@ -86,7 +86,6 @@
       <DependentUpon>UndoRedoStack.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\TestEvent.cs" />
-    <Compile Include="IModule.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
     <Compile Include="Diagnostics\MefDebugger.cs" />

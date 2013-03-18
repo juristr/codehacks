@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Base
+namespace WinFormsClientApplication
 {
-    public interface IModule
+    public interface IRepository<TItem>
     {
-        void Initialize();
+
+        TItem Get();
+
     }
 }
