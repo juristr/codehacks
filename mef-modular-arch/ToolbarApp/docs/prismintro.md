@@ -180,7 +180,9 @@ Lets add a Bootstrapper.cs and inherit from the `SimpleMefBootstrapper` class
 
 	}
 
-## Creating a Module
+## Modules
+
+### Creating a Module
 
 Create a new Visual Studio Class Library project and name it accordingly. Add the necessary dependencies.
 
@@ -222,6 +224,20 @@ The important part here is to mark the module with the `ModuleExport` attribute.
 
 
 This should load up your module. Try to verify it by placing a breakpoint in your module's `Initialize()` method.
+
+### Dependencies and On Demand Loading
+
+For specifying dependencies among modules we can just use the corresponding metadata in the `ModuleExport` attribute
+
+	[ModuleExport(typeof(ModuleA), DependsOnModuleNames = new string[] { "ModuleD" })]
+	public class ModuleA : IModule { ... }
+
+In this way we specify that `ModuleA` is depends on `ModuleD` and as such when `ModuleA` is requested to load up, `ModuleD` will be instantiated and initialized as well.
+
+Another important functionality is to specify **on-demand loading** of a module. Similar to specifying the dependencies, this can be done like
+
+	[ModuleExport(typeof(ModuleC), InitializationMode = InitializationMode.OnDemand)]
+	public class ModuleC : IModule { ... }
 
 ## Links
 
