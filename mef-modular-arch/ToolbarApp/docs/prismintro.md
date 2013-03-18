@@ -122,7 +122,50 @@ Note how the export is defined, it doesn't specify any specific implementation o
 
 ## ExportFactory
 
-...
+Often there is the need to explicitly control the lifecycle of a given object and in case to re-initialize it or get a new instance. For this purpose MEF has the `ExportFactory`.
+
+> Note, this is included natively only starting from .Net 4.5. In the case you cannot use that, you need to rely on a port by Glenn Block (former MS Project Manager for PRISM) which can be found [here][expfactory_port].
+
+For the export factory to work it is necessary to hook it onto the `CompositionContainer`
+
+	var exportFactoryProvider = new ExportFactoryProvider();
+	var container = new CompositionContainer(this.AggregateCatalog, exportFactoryProvider);
+	exportFactoryProvider.SourceProvider = container;
+	
+	return container;	
+
+Then assume you have the following dummy class with the following import
+
+	public class OrderCommand
+	{
+		[Import]
+		public IOrderRepository OrderRepository { get; set; }
+
+		public void Run() 
+		{
+			OrderRepository.PlaceOrder(someOrder);
+		}
+	}
+
+Assume for instance that `IOrderRepository` might get disposed at some time in the lifecycle for performance reasons and as such when invoking the `OrderCommand` we would have the need to retrieve a new instance of it. Using `ExportFactory` would enable such fine-grained control. Wrapping it up is relatively easy:
+
+	public class OrderCommand
+	{
+		private IOrderRepository OrderRepository { get; set; }
+
+		[Import]
+		public ExportFactory<IOrderRepository> OrderRepositoryFactory { get; set; }
+
+		public void Run() 
+		{
+			if(OrderRepository.IsDisposed)
+			{
+				OrderRepository = OrderRepositoryFactory.CreateExport().Value;
+			}
+
+			OrderRepository.PlaceOrder(someOrder);
+		}
+	}
 
 
 ## Bootstrapping an Application
@@ -183,3 +226,4 @@ This should load up your module. Try to verify it by placing a breakpoint in you
 ## Links
 
 [mef_nuget]:http://nuget.org/packages/Prism.MEFExtensions/
+[expfactory_port]:https://skydrive.live.com/?cid=f8b2fd72406fb218&id=F8B2FD72406FB218!238
