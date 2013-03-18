@@ -1,5 +1,4 @@
-﻿using IDesign.Composite.Events;
-using Microsoft.Practices.Composite.Events;
+﻿using Prism4Winforms.Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

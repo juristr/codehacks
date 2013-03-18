@@ -5,7 +5,7 @@ using MefContrib.Hosting.Generics;
 using MefContrib.Hosting.Interception;
 using MefContrib.Hosting.Interception.Configuration;
 using Microsoft.ComponentModel.Composition.Hosting;
-using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;

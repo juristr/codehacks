@@ -35,14 +35,35 @@
     <Reference Include="MefContrib">
       <HintPath>..\packages\MefContrib.1.2.2.1\lib\net40-Client\MefContrib.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Composite">
-      <HintPath>..\..\..\..\..\..\..\Temp\downloads\CompositeWinforms\CompositeExtensionsForWindowsForms\Shared\dependencies\Microsoft.Practices.Composite.dll</HintPath>
+    <Reference Include="Microsoft.Expression.Interactions">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.Interactivity">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.MefExtensions">
+      <HintPath>..\packages\Prism.MEFExtensions.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.MefExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism4Winforms.Prism">
+      <HintPath>..\dependencies\Prism4Winforms.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism4Winforms.Prism.MefExtensions">
+      <HintPath>..\dependencies\Prism4Winforms.Prism.MefExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,16 +102,6 @@
     <EmbeddedResource Include="Diagnostics\UndoRedoStack.resx">
       <DependentUpon>UndoRedoStack.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\privatehacks\pluginarchitecture\CompositeExtensionsForWindowsForms\CompositeExtensions\CompositeExtensions\CompositeExtensions.csproj">
-      <Project>{d1589da3-76bf-4acf-8e88-87d1c8fd36cc}</Project>
-      <Name>CompositeExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop\ComponentModel.Composition.Initialization.Desktop_4.csproj">
-      <Project>{23feb1ca-f29c-480f-a79e-e4b359621352}</Project>
-      <Name>ComponentModel.Composition.Initialization.Desktop_4</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

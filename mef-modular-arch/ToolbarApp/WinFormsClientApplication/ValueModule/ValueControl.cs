@@ -9,8 +9,8 @@ using System.Windows.Forms;
 using Base;
 using System.ComponentModel.Composition;
 using Base.Command;
-using Microsoft.Practices.Composite.Events;
 using Base.Events;
+using Microsoft.Practices.Prism.Events;
 
 namespace WinFormsClientApplication.ValueModule
 {

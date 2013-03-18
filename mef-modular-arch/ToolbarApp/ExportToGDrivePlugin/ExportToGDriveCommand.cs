@@ -2,7 +2,7 @@
 using Base.Command;
 using Base.Events;
 using ExportToGDrivePlugin.Service;
-using Microsoft.Practices.Composite.Events;
+using Microsoft.Practices.Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
