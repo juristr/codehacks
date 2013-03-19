@@ -120,6 +120,39 @@ we have the possibility to write
 
 Source: [http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html](http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html)
 
+### Metadata
+
+Export definitions allow to provide further information which might be needed by the consumer of the export for properly elaborating it. A "weekly typed" way of adding such metadata information is shown in the following piece of code:
+
+	[Export(typeof(IView))]
+	[ExportMetadata("Position", Positions.Header)]
+	public class MyPluginView : IView
+	{
+	}
+
+"Weekly typing" is not ideal however, hence, we try to make it strongly typed whenever possible. For doing so we first of all define an interface which defines our metadata's properties
+
+	public interface IViewMetadata
+	{
+		Positions Position { get; set; } //enumeration
+	}
+
+We then create a new attribute, inheriting from `ExportAttribute` and implementing our previously defined `IViewMetadata` interface.
+
+	public class ExportAsViewAttribute : ExportAttribute, IViewMetadata
+	{
+		public ExportAsViewAttribute 
+			: base(typeof(IView)) //will automatically export this as an IView type
+		
+		public Positions Position { get; set; }
+	}
+
+Now we can exchange our weekly typed metadata information of above with the following
+
+	[ExportAsView (Positions = Positions.Header)]
+	public class MyPluginView : IView
+	{
+	}
 
 ### Catalogs
 
@@ -304,17 +337,85 @@ This should load up your module. Try to verify it by placing a breakpoint in you
 
 ### Dependencies and On Demand Loading
 
-For specifying dependencies among modules we can just use the corresponding metadata in the `ModuleExport` attribute
+Another important functionality is to specify **on-demand loading** of a module. Similar to specifying the dependencies, this can be done like
+
+	[ModuleExport(typeof(ModuleC), InitializationMode = InitializationMode.OnDemand)]
+	public class ModuleC : IModule { ... }
+
+For **specifying dependencies** among modules we can just use the corresponding metadata in the `ModuleExport` attribute
 
 	[ModuleExport(typeof(ModuleA), DependsOnModuleNames = new string[] { "ModuleD" })]
 	public class ModuleA : IModule { ... }
 
 In this way we specify that `ModuleA` is depends on `ModuleD` and as such when `ModuleA` is requested to load up, `ModuleD` will be instantiated and initialized as well.
 
-Another important functionality is to specify **on-demand loading** of a module. Similar to specifying the dependencies, this can be done like
+> **Note**, we cannot have dependencies to a module with `InitializationMode.OnDemand`. You'll get a nice error message:  
+> _Module NavigationTreePluginModule is marked for automatic initialization when the application starts, but it depends on modules that are marked as OnDemand initialization. To fix this error, mark the dependency modules for InitializationMode=WhenAvailable, or remove this validation by extending the ModuleCatalog class._
 
-	[ModuleExport(typeof(ModuleC), InitializationMode = InitializationMode.OnDemand)]
-	public class ModuleC : IModule { ... }
+
+### Explicitly Load a Module
+
+Can be achieved with
+
+	moduleManager.LoadModule("ModuleA");
+
+## Loosely Coupled Communication
+
+Prism allows for loosely coupled communication between different parts of your application by using a publisher/subscriber pattern which is realized by the `IEventAggregator` interface.
+
+
+### Defining the Event Type
+
+First of all we need to define an event type which is shared among all interested subscribers. Each event inherits from the class `Prism4Winforms.Prism.Events.CompositeEvent<TPayload>` where Payload defines the object this event transports/broadcasts. Note, this is a custom class porting the functionality of the original Prism `CompositePresentationEvent<TPayload>` to WinForms.
+
+	public class StringEvent : CompositeEvent<string>
+	{
+
+	}
+
+### Publishing
+
+To publish the previously defined event, we need to get a dependency of the `IEventAggregator` and invoke its `Publish(...)` method
+
+	[Import]
+	public IEventAggregator EventAggregator { get; set; }
+
+    private void buttonOk_Click(object sender, EventArgs e)
+    {
+		...
+        EventAggregator.GetEvent<StringEvent>().Publish("Some string text");
+		...
+    }
+
+> **Note**, the registration of the concrete implementation of the `IEventAggregator` is automatically done by the `SimpleMefBootstrapper` in the `RegisterDefaultTypesIfMissing()` method.	
+
+### Subscribing
+
+To subscribe to a given event we again have to get a dependency to `IEventAggregator` and use its `Subscribe(...)` method.
+
+	eventAggregator.GetEvent<StringEvent>().Subscribe((msg) => MessageBox.Show(msg));
+
+Note that the subscribe method takes an `Action<TPayload>` delegate which is used to elaborate the received payload object defined by the event type (in our case a simple string).
+
+The Subscribe method takes a couple of optional parameters which allow to customize the subscription
+
+- `Action<TPayload>` - the delegate that gets invoked when the event gets published
+- `ThreadOption` - enumeration that specifies on which thread to execute the subscriber will be called. Options include
+	- 	`PublisherThread` - The call is done on the same thread on which the event was published.
+	- 	`SubscriberAffinityThread` - The call is done on the thread the subscriber subscribes from, if a SynchronizationContext is present indicating thread affinity. Otherwise it fires on  the publisher's thread.
+	- 	`BackgroundThread` - The call is done asynchronously on a background thread.
+- 	`keepSubscribersAlive` - boolean indicating on whether to keep all subscribers alive s.t. they are not garbage collected. If `false` it keeps a [WeakReference](http://msdn.microsoft.com/en-us/library/system.weakreference.aspx) to the subscribers.
+- 	`Predicate<TPayload>` - a filter lambda expression which allows to filter the events to subscribe to.
+
+Applying these params looks as follows
+
+	eventAggregator.GetEvent<StringEvent>().Subscribe(
+	    (msg) => MessageBox.Show(msg),
+	    ThreadOption.PublisherThread,
+	    true,
+	    (x) => x.ToUpper().Contains("HI"));
+
+In such case, we would execute the subscription delegate on the publisher thread, we would keep all subscribers alive and the subscription would only fire if the string contains "hi".
 
 ## Links
 

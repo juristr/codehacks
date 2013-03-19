@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Base.Events
 {
-    public class TestEvent : CompositeEvent<string>
+    public class StringEvent : CompositeEvent<string>
     {
 
     }

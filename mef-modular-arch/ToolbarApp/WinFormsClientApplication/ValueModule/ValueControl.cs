@@ -61,14 +61,13 @@ namespace WinFormsClientApplication.ValueModule
                         () =>
                         {
                             Values.Add(text);
+                            EventAggregator.GetEvent<StringEvent>().Publish(text);
                         },
                         () =>
                         {
                             Values.Remove(text);
                         }));
                 textBoxValue.Text = "";
-
-                EventAggregator.GetEvent<TestEvent>().Publish("hi there, I come from the main form");
             }
 
             textBoxValue.Focus();

@@ -9,6 +9,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ThreadOption = Prism4Winforms.Prism.Events.ThreadOption;
 
 namespace ExportToGDrivePlugin
 {
@@ -24,7 +25,11 @@ namespace ExportToGDrivePlugin
         {
             AuthService = authService;
 
-            eventAggregator.GetEvent<TestEvent>().Subscribe((msg) => MessageBox.Show(msg));
+            eventAggregator.GetEvent<StringEvent>().Subscribe(
+                (msg) => MessageBox.Show(msg),
+                ThreadOption.PublisherThread,
+                true,
+                (x) => x.ToUpper().Contains("HI"));
         }
 
         public void Execute()

@@ -85,12 +85,13 @@
     <Compile Include="Diagnostics\UndoRedoStack.Designer.cs">
       <DependentUpon>UndoRedoStack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Events\TestEvent.cs" />
+    <Compile Include="Events\StringEvent.cs" />
     <Compile Include="IValueProviderExtension.cs" />
     <Compile Include="IWindowHost.cs" />
     <Compile Include="Diagnostics\MefDebugger.cs" />
     <Compile Include="IToolWindow.cs" />
     <Compile Include="Command\OperationExecutedEventArgs.cs" />
+    <Compile Include="Positions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GenericContractRegistry.cs" />
   </ItemGroup>

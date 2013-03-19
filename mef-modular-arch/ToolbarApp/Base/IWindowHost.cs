@@ -8,6 +8,6 @@ namespace Base
 {
     public interface IWindowHost
     {
-        void LoadWindow(Control control);
+        void LoadWindow(Control control, Positions position = Positions.Main);
     }
 }

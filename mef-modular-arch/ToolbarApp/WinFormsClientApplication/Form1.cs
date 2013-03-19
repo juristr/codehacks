@@ -47,9 +47,6 @@ namespace WinFormsClientApplication
                         undoToolStripMenuItem.Enabled = ev.HasUndoItems;
                         redoToolStripMenuItem.Enabled = ev.HasRedoItems;
                     };
-
-            flowLayoutPanelWest.Controls.Add(NavigationMenu);
-            flowLayoutPanelWest.Dock = DockStyle.Fill;
         }
 
         public void OnImportsSatisfied()
@@ -75,16 +72,18 @@ namespace WinFormsClientApplication
         }
 
 
-        public void LoadWindow(Control control)
+        public void LoadWindow(Control control, Positions position)
         {
-            var controls = flowLayoutPanelMain.Controls;
-            foreach (Control ctrl in controls)
+            if (position == Positions.Main)
             {
-                flowLayoutPanelMain.Controls.Remove(ctrl);
+                flowLayoutPanelMain.Controls.Clear();
+                flowLayoutPanelMain.Controls.Add(control);
             }
-
-            flowLayoutPanelMain.Controls.Clear();
-            flowLayoutPanelMain.Controls.Add(control);
+            else if(position == Positions.Navigation)
+            {
+                flowLayoutPanelWest.Controls.Clear();
+                flowLayoutPanelWest.Controls.Add(control);
+            }
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
