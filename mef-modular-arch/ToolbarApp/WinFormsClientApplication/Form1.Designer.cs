@@ -30,6 +30,8 @@
         {
             this.applicationMenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,10 +39,11 @@
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.diagnosticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openUndoRedoStackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanelWest = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.applicationMenuBar.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // applicationMenuBar
@@ -52,7 +55,7 @@
             this.diagnosticsToolStripMenuItem});
             this.applicationMenuBar.Location = new System.Drawing.Point(0, 0);
             this.applicationMenuBar.Name = "applicationMenuBar";
-            this.applicationMenuBar.Size = new System.Drawing.Size(741, 24);
+            this.applicationMenuBar.Size = new System.Drawing.Size(952, 24);
             this.applicationMenuBar.TabIndex = 0;
             this.applicationMenuBar.Text = "menuStrip1";
             // 
@@ -66,10 +69,22 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(104, 6);
+            // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // editToolStripMenuItem
@@ -120,38 +135,52 @@
             this.openUndoRedoStackToolStripMenuItem.Text = "Open Undo/Redo Stack";
             this.openUndoRedoStackToolStripMenuItem.Click += new System.EventHandler(this.openUndoRedoStackToolStripMenuItem_Click);
             // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.ColumnCount = 2;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanelWest, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanelMain, 1, 0);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 1;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(952, 536);
+            this.tableLayoutPanel.TabIndex = 1;
+            // 
+            // flowLayoutPanelWest
+            // 
+            this.flowLayoutPanelWest.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanelWest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelWest.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanelWest.Name = "flowLayoutPanelWest";
+            this.flowLayoutPanelWest.Size = new System.Drawing.Size(244, 530);
+            this.flowLayoutPanelWest.TabIndex = 0;
+            // 
             // flowLayoutPanelMain
             // 
+            this.flowLayoutPanelMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.flowLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelMain.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanelMain.Location = new System.Drawing.Point(253, 3);
             this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
-            this.flowLayoutPanelMain.Size = new System.Drawing.Size(741, 386);
+            this.flowLayoutPanelMain.Size = new System.Drawing.Size(926, 530);
             this.flowLayoutPanelMain.TabIndex = 1;
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 410);
-            this.Controls.Add(this.flowLayoutPanelMain);
+            this.ClientSize = new System.Drawing.Size(952, 560);
+            this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.applicationMenuBar);
             this.MainMenuStrip = this.applicationMenuBar;
             this.Name = "Form1";
             this.Text = "Application Extension Demo";
             this.applicationMenuBar.ResumeLayout(false);
             this.applicationMenuBar.PerformLayout();
+            this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,7 +191,6 @@
         private System.Windows.Forms.MenuStrip applicationMenuBar;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
         private System.Windows.Forms.ToolStripMenuItem pluginsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
@@ -171,6 +199,9 @@
         private System.Windows.Forms.ToolStripMenuItem openUndoRedoStackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWest;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
     }
 }
 

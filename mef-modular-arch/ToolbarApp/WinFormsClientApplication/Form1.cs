@@ -21,8 +21,8 @@ namespace WinFormsClientApplication
         [ImportMany("Export", typeof(ToolStripMenuItem))]
         public IEnumerable<ToolStripMenuItem> ExportMenuItems { get; set; }
 
-        //[Import]
-        //public IRepository<ICommand> CmdRepo { get; set; }
+        [Import("navigationMenu")]
+        public UserControl NavigationMenu { get; set; }
 
         [ImportMany]
         public IEnumerable<ToolStripMenuItem> PluginMenus { get; set; }
@@ -47,6 +47,9 @@ namespace WinFormsClientApplication
                         undoToolStripMenuItem.Enabled = ev.HasUndoItems;
                         redoToolStripMenuItem.Enabled = ev.HasRedoItems;
                     };
+
+            flowLayoutPanelWest.Controls.Add(NavigationMenu);
+            flowLayoutPanelWest.Dock = DockStyle.Fill;
         }
 
         public void OnImportsSatisfied()

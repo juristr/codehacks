@@ -8,6 +8,7 @@ using Microsoft.ComponentModel.Composition.Hosting;
 using Microsoft.Practices.Prism.Events;
 using Microsoft.Practices.Prism.Modularity;
 using MyFirstMefPlugin;
+using NavigationTreePlugin;
 using Prism4Winforms.Prism.MefExtensions;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace WinFormsClientApplication
     public class Bootstrapper : SimpleMefBootstrapper
     {
 
-        public Form1 Shell { get; set; }
+        public new Form1 Shell { get; set; }
 
         protected override void ConfigureAggregateCatalog()
         {
@@ -35,16 +36,12 @@ namespace WinFormsClientApplication
             {
                 this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(GetType().Assembly));
 
-                this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MyFirstMefPluginModule).Assembly));
-
                 //verify the need for this
                 this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(ICommandHandler).Assembly));
 
-                //var typeCatalog = new TypeCatalog(typeof(GenericContractRegistry), typeof(MyGenericContractRegistry));
-                //var cfg = new InterceptionConfiguration().AddHandler(new GenericExportHandler());
-                //var interceptingCatalog = new InterceptingCatalog(typeCatalog, cfg);
-                
-                //this.AggregateCatalog.Catalogs.Add(interceptingCatalog);
+                //modules loading
+                this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(MyFirstMefPluginModule).Assembly));
+                this.AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(NavigationTreePluginModule).Assembly));
 
                 //this could be discovered dynamically (in case that behavior is needed)
                 //NOTE: theres is an after build copy event that copies the plugin into the bin folder of this app
