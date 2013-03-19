@@ -34,6 +34,13 @@ So to define an export, we can write it as follows:
 
     }
 
+**Note**, that the import statements property could even be of _private_ visibility. Meaning, we could write
+
+	[Import]
+	private IAction MyAction { get; set; }
+
+and it would still work.
+
 What is important to know is that for **importing a list of dependencies** the `ImportMany` attribute has to be used like
 
     [ImportMany]
@@ -41,8 +48,78 @@ What is important to know is that for **importing a list of dependencies** the `
 
 >  An ordinary ImportAttribute attribute is filled by one and only one ExportAttribute. If more than one is available, the composition engine produces an error. <cite>From the official MSDN docs</cite>
 
+Normally when importing dependencies into an object there are two different kind of them
+
+- mandatory dependencies (without which the object can't live)
+- optional dependencies (without which the object can still work and function but it might lack some additional functionality)
+
+It is preferrable to import _mandatory_ dependencies directly into the constructor of the object. This is especially useful for communication purposes as a potential consumer of the object will immediately see the required dependencies he has to inject. **Constructor injection** can be done by using the `[ImportingConstructor]` attribute
+
+	public class MyClass
+	{
+		private IMyDependency dependency;
+
+        [ImportingConstructor]
+        public MyClass(IMyDependency dependency)
+        {
+            this.dependency = dependency;
+        }
+    }
+
+When needed, additional metadata can be specified in the following way:
+
+	public class MyClass
+	{
+		private IMyDependency dependency;
+
+        [ImportingConstructor]
+        public MyClass(
+             [Import("SpecialDependency")] 
+             IMyDependency dependency)
+        {
+            this.dependency = dependency;
+        }
+    }
+
+> **Note**, it might happen that you're forced to use property injection in case of bidirectional dependencies. For instance, if class A dependes on B and B depends on A then we cannot import both of them using constructor injection as that would result in circular references.  
+>_(beside that, bidirectional references are usually a sign of a design problem)_
+
 **InheritedExport**  
-http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html
+Inherited exports are a way to facilitate the declaration of export statements and to avoid redundancy. So instead of
+
+	[Export("commands", typeof(ICommand))]
+	public class Command1 : ICommand
+	{
+		// Implementation of the Interface
+	}
+	 
+	[Export("commands", typeof(ICommand))]
+	public class Command2 : ICommand
+	{
+	    // Implementation of the Interface
+	}
+
+we have the possibility to write
+
+    [InheritedExport("commands",typeof(ICommand))]
+    public interface ICommand
+    {
+      // Interface Declaration
+    }
+       
+    public class Command1 : ICommand
+    {
+      // Implementation of the Interface
+    }
+
+    public class Command2 : ICommand
+    {
+      // Implementation of Interface
+    }
+	
+
+Source: [http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html](http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html)
+
 
 ### Catalogs
 
@@ -243,3 +320,4 @@ Another important functionality is to specify **on-demand loading** of a module.
 
 [mef_nuget]:http://nuget.org/packages/Prism.MEFExtensions/
 [expfactory_port]:https://skydrive.live.com/?cid=f8b2fd72406fb218&id=F8B2FD72406FB218!238
+[inheritedexports]:http://randomactsofcoding.blogspot.it/2010/01/making-part-declarations-easier-with.html
