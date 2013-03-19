@@ -7,8 +7,7 @@ using System.Text;
 
 namespace MyFirstMefPlugin
 {
-    //[ModuleExport(typeof(MyFirstMefPluginModule))]
-    [ModuleExport(typeof(MyFirstMefPluginModule), InitializationMode = InitializationMode.OnDemand)]
+    [ModuleExport(typeof(MyFirstMefPluginModule))]
     public class MyFirstMefPluginModule : IModule
     {
 
