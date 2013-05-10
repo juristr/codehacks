@@ -9,6 +9,11 @@ From the [MEF homepage](http://mef.codeplex.com/):
 
 > The Managed Extensibility Framework (MEF) is a composition layer for .NET that improves the flexibility, maintainability and testability of large applications. MEF can be used for third-party plugin extensibility, or it can bring the benefits of a loosely-coupled plugin-like architecture to regular applications. <cite><a href="http://mef.codeplex.com">http://mef.codeplex.com</a></cite>
 
+### Mef vs Dependency Injection Containers
+
+...
+
+
 ## Basics
 
 ### Export and Import
@@ -154,6 +159,28 @@ Now we can exchange our weekly typed metadata information of above with the foll
 	{
 	}
 
+Associated metadata information can then be imported by a consumer like
+
+	[ImportMany]
+    public Lazy<IView,IPluginMetadata>[] Parts { get; set; }
+
+and once the import is satisfied we can access the metadata by simply iterating over the collection
+
+	foreach (var plugin in Parts)
+	{
+	    var position = plugin.Metadata.Position;
+	    
+	    if (position.Equals(Positions.Header))
+	    {
+	        HeaderPanel.Children.Add(plugin.Value.Part);
+	    }
+	    else
+	    {
+	        FooterPanel.Children.Add(plugin.Value.Part);
+	    }
+	}
+
+	
 ### Catalogs
 
 [Catalogs](http://mef.codeplex.com/wikipage?title=Using%20Catalogs) allow for the dynamic discovery of parts which are basically compontents registered with a `[Export]` tag. There are different kind of catalogs with diverse capabilities:
@@ -229,6 +256,68 @@ Note how the export is defined, it doesn't specify any specific implementation o
 
 		...
 	}
+
+## Lifetime
+
+A fact of major importance is to know the lifetime of a certain object. In MEF this is defined by the `PartCreationPolicy` attribute which defines the "shareability" of a given part. It distinguishes
+
+- **Shared** - the part author is telling MEF that at most one instance of the part may exist per container (aka Singleton scope)
+- **NonShared** - the part author is telling MEF that each request for exports of the part will be served by a new instance of it.
+- **Any** - the part author allows the part to be used as either "Shared" or "NonShared".
+
+By default each part is created as a singleton, basically in "Shared" mode.
+
+For example
+
+	[PartCreationPolicy(CreationPolicy.Shared)]
+	[Export]
+	public class MySingletonClass { ... }
+
+
+A non-singleton class instead would look like
+
+	[PartCreationPolicy(CreationPolicy.NonShared)]
+	[Export]
+	public class MyNonSingletonClass { ... }
+
+On the other side, a consumer can define constraints on its imports using the `RequiredCreationPolicy` attribute.
+
+	[Import(RequiredCreationPolicy = CreationPolicy.NonShared)]
+	public SomeClass MyImportedClass { get; set; }
+
+By default the `RequiredCreationPolicy` is set to `Any` s.t. shared and non-shared parts are accepted. The following table highlights the different possible scenarios of using the `RequiredCreationPolicy`:
+
+<table>
+	<thead>
+		<th>-</th>
+		<th>Export with CreationPolicy.Any</th>
+		<th>Export with CreationPolicy.Shared</th>
+		<th>Export with CreationPolicy.NonShared</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Import with CreationPolicy.Any</strong></td>
+			<td>Shared</td>
+			<td>Shared</td>
+			<td>Non Shared</td>
+		</tr>
+		<tr>
+			<td><strong>Import with CreationPolicy.Shared</strong></td>
+			<td>Shared</td>
+			<td>Shared</td>
+			<td><i>No Match</i></td>
+		</tr>
+		<tr>
+			<td><strong>Import with CreationPolicy.NonShared</strong></td>
+			<td>Non Shared</td>
+			<td><i>No Match</i></td>
+			<td>Non Shared</td>
+		</tr>
+	</tbody>
+</table>
+
+More details can be found [here](http://mef.codeplex.com/wikipage?title=Parts%20Lifetime).
+
 
 ## ExportFactory
 
@@ -355,7 +444,7 @@ In this way we specify that `ModuleA` is depends on `ModuleD` and as such when `
 
 ### Explicitly Load a Module
 
-Can be achieved with
+Can be achieved by getting a dependency to `IModuleManager` and then by calling
 
 	moduleManager.LoadModule("ModuleA");
 
