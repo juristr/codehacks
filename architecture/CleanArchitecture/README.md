@@ -57,7 +57,66 @@ Database should not be in the middle, but rather a plugin that provides persiste
 ![](./docs/imgs/pluggabledatabase.png)
 
 
-## References
+# Open Questions
+
+## The MVC Controller implements a Boundary?
+
+Thinking of a desktop environment where I use an MVC/MVP/MVVM pattern (whatever), I might have a controller/presenter/viewmodel that implements the Boundary and as a consequence, an Interactor might call a method on that Boundary to display something to the UI.
+
+I'm thinking of something like (abstract code)
+
+
+	class OrderPresenter : IOrderOutputGateway {
+
+		public void DisplayOrder(OrderResultModel model) {
+			//do some transformation and display it on the corresponding
+			//textboxes etc...
+		}
+
+	}
+
+
+and in turn the `PlaceOrder` Interactor might look like
+
+	class PlaceOrder : IPlaceOrderInteractor {
+
+		public PlaceOrder(IOrderOutputGateway outputGateway) {
+			this.outputGateway = ....
+		}
+
+		public void PlaceOrder(OrderRequestModel model) {
+
+			//1. apply your business logic and transformations
+			//2. construct the OrderResultModel
+			//3. invoke the outputGateway to display your results
+
+			outputGateway.DisplayOrder(orderResultModel);
+		}
+
+	}
+
+Finally, my questions.
+
+**In a web environment, where I have a REST web api, how would that interaction work??**
+
+Usually the methods are there similar to (obviously slight changes depending on what your frontend framework offers you)
+
+	public class OrdersController {
+
+		public void PlaceOrder(Request request, Response response) {
+
+			//1. parse out the data from the request constructing the OrderRequestModel
+			//2. Invoke the PlaceOrder Interactor
+			//3. ?? 
+
+		}
+
+	}
+
+Point 3?? I would expect to get the `OrderResultModel` directly as a result from the Interactor which I then transform s.t. it is suitable for being returned in the response. That looks fine to me, however I'm not sure whether that would violate the principles mentioned by Uncle Bob.  
+(IMHO it wouldn't as long as I do not create dependencies outwards)
+
+# References
 
 - http://www.infoq.com/news/2013/07/architecture_intent_frameworks
 - http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html

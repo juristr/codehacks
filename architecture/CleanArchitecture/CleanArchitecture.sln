@@ -13,6 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13CF7647-0A88-46F5-A2DF-CFCC98E56717}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcceptanceTests", "AcceptanceTests\AcceptanceTests.csproj", "{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{24DB0A04-71E6-479B-B733-13B98A5D21B7}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +48,15 @@ Global
 		{13053A7B-874D-41F6-BC77-3001E026D81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13053A7B-874D-41F6-BC77-3001E026D81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13053A7B-874D-41F6-BC77-3001E026D81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C44D017-C7FC-4D5B-97A4-58BEF5F1DB72} = {13CF7647-0A88-46F5-A2DF-CFCC98E56717}
 	EndGlobalSection
 EndGlobal

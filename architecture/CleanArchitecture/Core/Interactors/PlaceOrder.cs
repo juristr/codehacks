@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Boundaries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Interactors
     /// Interactor
     /// This represets the action of placing a new order to the system
     /// </summary>
-    public class PlaceOrder
+    public class PlaceOrder : IPlaceOrder
     {
         private readonly IOrderGateway orderGateway;
         private readonly OrderRequestModel orderRequestModel;
@@ -29,5 +30,10 @@ namespace Interactors
             this.orderRequestModel = orderRequestModel;
         }
 
+
+        public OrderResultModel PlaceOrder(OrderRequestModel orderRequestModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
