@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CleanArchitecture.Models;
+using Core.Boundaries;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -10,23 +12,33 @@ namespace CleanArchitecture.Controllers
 {
     public class OrdersController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        private readonly IPlaceOrder placeOrderIntent;
+
+
+        public OrdersController(IPlaceOrder placeOrderIntent)
         {
-            return new string[] { "value1", "value2" };
+            this.placeOrderIntent = placeOrderIntent;
         }
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/values
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        //// GET api/values/5
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]OrderDto order)
         {
-            var orderRequestModel = new OrderRequestModel();
-            
+            var orderRequest = new OrderRequestModel();
+            var orderResult = placeOrderIntent.PlaceOrder(orderRequest);
+
+            //return orderResult;
         }
 
         // PUT api/values/5

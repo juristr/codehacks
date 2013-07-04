@@ -14,5 +14,9 @@ namespace Transversal
     public class OrderRequestModel
     {
 
+        public int Id { get; set; }
+        public int CustomerId { get; set; }
+        public IEnumerable<int> OrderItemIds { get; set; }
+
     }
 }
