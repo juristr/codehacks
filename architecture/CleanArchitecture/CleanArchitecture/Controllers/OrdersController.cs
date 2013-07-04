@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Transversal;
 
 namespace CleanArchitecture.Controllers
 {
-    public class ValuesController : ApiController
+    public class OrdersController : ApiController
     {
         // GET api/values
         public IEnumerable<string> Get()
@@ -24,6 +25,8 @@ namespace CleanArchitecture.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            var orderRequestModel = new OrderRequestModel();
+            
         }
 
         // PUT api/values/5
