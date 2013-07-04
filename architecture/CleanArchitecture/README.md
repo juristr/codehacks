@@ -103,7 +103,8 @@ Usually the methods are there similar to (obviously slight changes depending on 
 
 	public class OrdersController {
 
-		public void PlaceOrder(Request request, Response response) {
+		// POST /api/orders
+		public void Post(Request request, Response response) {
 
 			//1. parse out the data from the request constructing the OrderRequestModel
 			//2. Invoke the PlaceOrder Interactor
@@ -118,7 +119,12 @@ Point 3?? I would expect to get the `OrderResultModel` directly as a result from
 
 # References
 
-- http://www.infoq.com/news/2013/07/architecture_intent_frameworks
-- http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html
+1. http://www.infoq.com/news/2013/07/architecture_intent_frameworks
+1. [Simon Brown criticing Uncle Bob's architectural assumptions](http://www.codingthearchitecture.com/2011/11/06/the_delivery_mechanism_is_an_annoying_detail.html)
+1. [Uncle Bob answering Simon's criticism](http://blog.8thlight.com/uncle-bob/2011/11/22/Clean-Architecture.html)
+1. [Uncle Bob's Clean Architecture overview](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+
+
+## Related 
 - http://jeffreypalermo.com/blog/the-onion-architecture-part-1/
-- [Keynote: Architecture the Lost Years](http://www.youtube.com/watch?feature=player_detailpage&v=WpkDN78P884#t=1672s)
+- [Keynote: Architecture the Lost Years by Uncle Bob](http://www.youtube.com/watch?feature=player_detailpage&v=WpkDN78P884#t=1672s)
