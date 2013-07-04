@@ -39,13 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boundaries\IPlaceOrder.cs" />
     <Compile Include="Interactors\PlaceOrder.cs" />
     <Compile Include="Gateways\IOrderGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Boundaries\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{810dd274-5639-4f7b-a9cf-09df14b47bc3}</Project>
