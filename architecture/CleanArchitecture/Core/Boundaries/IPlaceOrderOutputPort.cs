@@ -6,10 +6,12 @@ using Transversal;
 
 namespace Core.Boundaries
 {
-    public interface IPlaceOrder
+    public interface IPlaceOrderOutputPort
     {
 
-        OrderResultModel PlaceOrder(OrderRequestModel orderRequestModel);
+        void DisplayError(string errorMessage);
+
+        void DisplaySuccess(OrderResultModel orderRequestModel);
 
     }
 }

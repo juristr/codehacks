@@ -12,10 +12,9 @@ namespace CleanArchitecture.Controllers
 {
     public class OrdersController : ApiController
     {
-        private readonly IPlaceOrder placeOrderIntent;
+        private readonly IPlaceOrderInputPort placeOrderIntent;
 
-
-        public OrdersController(IPlaceOrder placeOrderIntent)
+        public OrdersController(IPlaceOrderInputPort placeOrderIntent)
         {
             this.placeOrderIntent = placeOrderIntent;
         }
@@ -33,22 +32,47 @@ namespace CleanArchitecture.Controllers
         //}
 
         // POST api/values
-        public void Post([FromBody]OrderDto order)
+        public OrderDto Post([FromBody]OrderDto order)
         {
             var orderRequest = new OrderRequestModel();
-            var orderResult = placeOrderIntent.PlaceOrder(orderRequest);
+            var orderWrapper = new PlaceOrderDeliveryMechanism();
+            placeOrderIntent.PlaceOrder(orderRequest, orderWrapper);
 
-            //return orderResult;
+            if (orderWrapper.IsError)
+            {//obviously use a more specific exception
+                throw new ApplicationException(orderWrapper.ErrorMessage);
+            }else{
+                return new OrderDto(orderWrapper.ResultModel);
+            }
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        //// PUT api/values/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/values/5
+        //public void Delete(int id)
+        //{
+        //}
+    }
+
+    public class PlaceOrderDeliveryMechanism : IPlaceOrderOutputPort
+    {
+        public bool IsError { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public OrderResultModel ResultModel { get; set; }
+
+        public void DisplayError(string errorMessage)
         {
+            IsError = true;
+            ErrorMessage = errorMessage;
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        public void DisplaySuccess(OrderResultModel orderRequestModel)
         {
+            IsError = false;
         }
     }
 }

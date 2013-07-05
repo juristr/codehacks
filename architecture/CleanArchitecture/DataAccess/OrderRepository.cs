@@ -7,7 +7,7 @@ using System.Text;
 namespace DataAccess
 {
     /// <summary>
-    /// Uncle Bob Martin called it "Gateway"
+    /// Responsible for fetching the data
     /// </summary>
     public interface OrderRepository : IOrderGateway
     {

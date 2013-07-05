@@ -12,12 +12,12 @@ namespace Interactors
     /// Interactor
     /// This represets the action of placing a new order to the system
     /// </summary>
-    public class PlaceOrder : IPlaceOrder
+    public class PlaceOrderInteractor : IPlaceOrderInputPort
     {
         private readonly IOrderGateway orderGateway;
         private readonly OrderRequestModel orderRequestModel;
 
-        public PlaceOrder(OrderRequestModel orderRequestModel, IOrderGateway orderGateway)
+        public PlaceOrderInteractor(OrderRequestModel orderRequestModel, IOrderGateway orderGateway)
         {
             /*
              * TODO:
@@ -30,9 +30,10 @@ namespace Interactors
             this.orderRequestModel = orderRequestModel;
         }
 
-
-        public OrderResultModel PlaceOrder(OrderRequestModel orderRequestModel)
+        public void PlaceOrder(OrderRequestModel orderRequestModel, IPlaceOrderOutputPort placeOrderOutbound)
         {
+            //orderOutbound.DisplaySuccess();
+
             throw new NotImplementedException();
         }
     }

@@ -39,8 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boundaries\IPlaceOrder.cs" />
-    <Compile Include="Interactors\PlaceOrder.cs" />
+    <Compile Include="Boundaries\IPlaceOrderOutputPort.cs" />
+    <Compile Include="Boundaries\IPlaceOrderInputPort.cs" />
+    <Compile Include="Interactors\PlaceOrderInteractor.cs" />
     <Compile Include="Gateways\IOrderGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
