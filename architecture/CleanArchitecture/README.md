@@ -36,7 +36,7 @@ As mentioned, it would then pass it on through the **Boundaries** (having an int
 
 ![](./docs/imgs/flow_mvc_interactor.png)
 
-Zooming into that scenario we'd have
+Zooming into that scenario we'd have that the user interacts with the Delivery Mechanism (UI)...
 
 ![](./docs/imgs/flow_requestmodel_creation.png)
 
