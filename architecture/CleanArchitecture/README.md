@@ -6,7 +6,7 @@ This is my playground on trying to implement Uncle Bob's description of a so-cal
 <iframe width="560" height="315" src="http://www.youtube.com/embed/WpkDN78P884" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
 
 
-The implementation happens to be in C# .Net using WebApi as the Frontend (or Delivery Mechanism as Uncle Bob calls it). However you should equally be able to prot this to any desired language.
+The implementation happens to be in C# .Net using WebApi as the Frontend (or Delivery Mechanism as Uncle Bob calls it). However you should equally be able to port this to any desired language.
 
 ### State
 
