@@ -3,8 +3,10 @@ Clean Architecture
 
 This is my playground on trying to implement Uncle Bob's description of a so-called [Clean Architecture](http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html) which he also mentions in his keynote about "Architecture the Lost Years".
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/WpkDN78P884" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
+![](http://blog.8thlight.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
 
+<iframe width="560" height="315" src="http://www.youtube.com/embed/WpkDN78P884" frameborder="0" allowfullscreen="allowfullscreen"> </iframe>
+_([Youtube](http://www.youtube.com/watch?v=WpkDN78P884))_
 
 The implementation happens to be in C# .Net using WebApi as the Frontend (or Delivery Mechanism as Uncle Bob calls it). However you should equally be able to port this to any desired language.
 
